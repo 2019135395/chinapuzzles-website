@@ -1,0 +1,132 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import ContactFooter from '@/components/ContactFooterTwo';
+
+const PrivacyPolicyPage = () => {
+  // 出场动画控制
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false);
+
+  const heroRef = useRef(null);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    document.title = "Privacy Policy-ChinaPuzzles";
+  }, []);
+
+  useEffect(() => {
+    const heroObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsHeroVisible(true);
+          heroObserver.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    const contentObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsContentVisible(true);
+          contentObserver.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (heroRef.current) heroObserver.observe(heroRef.current);
+    if (contentRef.current) contentObserver.observe(contentRef.current);
+
+    return () => {
+      if (heroRef.current) heroObserver.unobserve(heroRef.current);
+      if (contentRef.current) contentObserver.unobserve(contentRef.current);
+    };
+  }, []);
+
+  // 页面数据
+  const sections = [
+    {
+      title: "Information We Collect",
+      text: "ChinaPuzzles is committed to clear, responsible communication. This placeholder text is structured for future legal review and can be replaced with approved policy language, including longer paragraphs, lists and jurisdiction-specific clauses."
+    },
+    {
+      title: "How We Use Information",
+      text: "ChinaPuzzles is committed to clear, responsible communication. This placeholder text is structured for future legal review and can be replaced with approved policy language, including longer paragraphs, lists and jurisdiction-specific clauses."
+    },
+    {
+      title: "Data Sharing and Security",
+      text: "ChinaPuzzles is committed to clear, responsible communication. This placeholder text is structured for future legal review and can be replaced with approved policy language, including longer paragraphs, lists and jurisdiction-specific clauses."
+    },
+    {
+      title: "Your Rights",
+      text: "ChinaPuzzles is committed to clear, responsible communication. This placeholder text is structured for future legal review and can be replaced with approved policy language, including longer paragraphs, lists and jurisdiction-specific clauses."
+    }
+  ];
+
+  return (
+    <div className="bg-[#F8F7F4] text-neutral-900">
+      
+      {/* ==================== 顶部红色 Hero 区域 ==================== */}
+      <div ref={heroRef} className={`w-full bg-[#B41615] text-white transition-all duration-1000 ease-out ${
+        isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-[330px] flex flex-col justify-center">
+          <p className="text-xs font-bold uppercase tracking-widest mb-4">Home / Privacy Policy</p>
+          <h1 className="font-serif text-5xl md:text-6xl tracking-tight">Privacy Policy</h1>
+        </div>
+      </div>
+
+      {/* ==================== 主体内容区 ==================== */}
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
+        
+        {/* 引言与章节列表 */}
+        <div ref={contentRef} className="transition-all duration-1000">
+          
+          {/* 引言段落：最先出场（0ms延迟） */}
+          <p className={`text-neutral-500 text-base leading-relaxed max-w-4xl mb-20 transition-all duration-1000 ease-out ${
+            isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transitionDelay: isContentVisible ? '0ms' : '0ms' }}
+          >
+            This page uses editable legal-content modules. Replace, expand or shorten each section without disturbing the page hierarchy or reading rhythm.
+          </p>
+
+          {/* 章节列表：依次出场（每个增加150ms延迟） */}
+          <div className="flex flex-col gap-16">
+            {sections.map((item, index) => (
+              <div 
+                key={index} 
+                className={`group transition-all duration-1000 ease-out ${
+                  isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
+                style={{ transitionDelay: isContentVisible ? `${200 + index * 150}ms` : '0ms' }}
+              >
+                {/* 标题：Hover 变红 */}
+                <h2 className="font-serif text-4xl md:text-5xl text-neutral-900 mb-6 transition-colors duration-300 group-hover:text-[#B41615]">
+                  {item.title}
+                </h2>
+                
+                {/* 正文 */}
+                <p className="text-neutral-600 text-base leading-relaxed max-w-4xl mb-8">
+                  {item.text}
+                </p>
+                
+                {/* 红色下划线：Hover 时颜色加深或轻微加粗 */}
+                <div className="w-full h-[2px] bg-[#B41615] transition-all duration-500 group-hover:h-[3px] group-hover:bg-[#8a0f0f]"></div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </main>
+
+      
+      <ContactFooter />
+      
+    </div>
+  );
+};
+
+export default PrivacyPolicyPage;
