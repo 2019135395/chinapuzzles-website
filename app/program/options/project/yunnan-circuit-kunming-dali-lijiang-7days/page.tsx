@@ -117,145 +117,81 @@ const OverView = () => {
 
   const navItems = [
     { label: "PRE-DAY", id: "pre", city: "Arrival" },
-    { label: "DAY 01", id: "01", city: "Beijing" },
-    { label: "DAY 02", id: "02", city: "Beijing" },
-    { label: "DAY 03", id: "03", city: "Beijing" },
-    { label: "DAY 04", id: "04", city: "Beijing" },
-    { label: "DAY 05", id: "05", city: "Xi'an" },
-    { label: "DAY 06", id: "06", city: "Xi'an" },
-    { label: "DAY 07", id: "07", city: "Xi'an" },
-    { label: "DAY 08", id: "08", city: "Shanghai" },
-    { label: "DAY 09", id: "09", city: "Shanghai" },
-    { label: "DAY 10", id: "10", city: "Shanghai" },
-    { label: "DAY 11", id: "11", city: "Shanghai" },
-    { label: "DAY 12", id: "12", city: "Departure" }
+    { label: "DAY 01", id: "01", city: "Kunming" },
+    { label: "DAY 02", id: "02", city: "Kunming" },
+    { label: "DAY 03", id: "03", city: "Dali" },
+    { label: "DAY 04", id: "04", city: "Lijiang" },
+    { label: "DAY 05", id: "05", city: "Lijiang" },
+    { label: "DAY 06", id: "06", city: "Departure" }
   ];
 
   const scheduleData = [
     {
       day: "pre",
       label: "PRE",
-      title: "Arrival in Beijing",
+      title: "Arrival in Kunming",
       events: [
-        { time: "PRE-DAY", desc: "Welcome Dinner & Ice-Breaking" }
+        { time: "PRE-DAY", desc: "Welcome Dinner & Ice-Breaking (Yunnan Mushroom Hotpot)" }
       ]
     },
     {
       day: "01",
       label: "DAY 01",
-      title: "Beijing: Culture & History",
+      title: "Kunming: Stone Forest",
       events: [
-        { time: "10:00-12:00", desc: "Forbidden City" },
-        { time: "12:00-14:00", desc: "Lunch" },
-        { time: "14:00-15:00", desc: "Jingshan Garden" },
-        { time: "15:00-16:00", desc: "Hutong Area" }
+        { time: "08:00-16:00", desc: "Stone Forest (Lunch on your own)" },
+        { time: "17:00-19:00", desc: "Green Lake Park & Local Life" },
+        { time: "19:30-21:00", desc: "Cross-Bridge Rice Noodles Dinner" }
       ]
     },
     {
       day: "02",
       label: "DAY 02",
-      title: "Beijing: Business & Networking",
+      title: "Kunming: Business & Coffee Culture",
       events: [
-        { time: "10:00-12:00", desc: "Company Visit 1" },
+        { time: "09:00-11:30", desc: "Company Visit 1 (Yunnan Coffee / Tea)" },
+        { time: "12:00-13:00", desc: "Lunch" },
         { time: "14:00-16:00", desc: "Guest Speaker & Mingling Time" },
-        { time: "18:00-21:00", desc: "Dinner & Local Bar/Livehouse" }
+        { time: "17:30-19:30", desc: "High-speed Train to Dali (Dinner on your own)" }
       ]
     },
     {
       day: "03",
       label: "DAY 03",
-      title: "Beijing: Wonder of the World",
+      title: "Dali: Erhai Lake & Old Town",
       events: [
-        { time: "10:00-14:00", desc: "Great Wall (Lunch on your own)" }
+        { time: "09:00-12:00", desc: "Erhai Lake (Boat Ride / Lakeside Cycling)" },
+        { time: "12:00-13:00", desc: "Lunch" },
+        { time: "14:00-17:00", desc: "Three Pagodas & Dali Ancient Town" },
+        { time: "18:00-20:00", desc: "Bai Ethnic Dinner & Night Market" }
       ]
     },
     {
       day: "04",
       label: "DAY 04",
-      title: "Beijing: Business & Culture",
+      title: "Dali to Lijiang",
       events: [
-        { time: "10:00-12:00", desc: "Company Visit 2" },
-        { time: "12:00-14:00", desc: "Lunch" },
-        { time: "14:00-17:00", desc: "Cultural Experience: Tachi/Calligraphy" }
+        { time: "09:00-11:00", desc: "Dali Morning Market & Ethnic Culture Walk" },
+        { time: "12:00-13:00", desc: "Lunch" },
+        { time: "13:30-16:30", desc: "Drive to Lijiang" },
+        { time: "17:00-19:00", desc: "Lijiang Ancient Town (UNESCO) Walk" },
+        { time: "19:30-21:00", desc: "Naxi Dinner & Bar Street" }
       ]
     },
     {
       day: "05",
       label: "DAY 05",
-      title: "Beijing to Xi'an",
+      title: "Lijiang: Snow Mountain & Business",
       events: [
-        { time: "9:00-14:00", desc: "High-speed Train to Xi'an (Lunch on your own)" },
-        { time: "14:00-17:00", desc: "Ancient City Wall" },
-        { time: "17:00-19:00", desc: "Huimin Street" },
-        { time: "19:00-21:00", desc: "Datang Ever-bright City" }
+        { time: "08:00-12:00", desc: "Jade Dragon Snow Mountain & Impression Lijiang Show (Lunch on your own)" },
+        { time: "14:00-16:00", desc: "Company Visit 2 (Tourism / Cultural Creative)" },
+        { time: "16:30-18:00", desc: "Guest Lecture & Mingling / Black Dragon Pool" },
+        { time: "18:30-21:00", desc: "Farewell Dinner" }
       ]
     },
     {
       day: "06",
       label: "DAY 06",
-      title: "Xi'an: Ancient Wonders",
-      events: [
-        { time: "10:00-12:00", desc: "Company Visit 3" },
-        { time: "12:00-13:00", desc: "Lunch" },
-        { time: "14:00-17:00", desc: "Terracotta Warriors" },
-        { time: "18:00-20:00", desc: "Specialised Dinner" }
-      ]
-    },
-    {
-      day: "07",
-      label: "DAY 07",
-      title: "Xi'an: Cultural Immersion",
-      events: [
-        { time: "9:00-12:00", desc: "Cultural Experience: Shadow Play (Pi Ying)" },
-        { time: "12:00-13:00", desc: "Lunch" },
-        { time: "14:00-16:00", desc: "The Longest Day in ChangAn" },
-        { time: "20:00-22:00", desc: "Local Bar" }
-      ]
-    },
-    {
-      day: "08",
-      label: "DAY 08",
-      title: "Xi'an to Shanghai",
-      events: [
-        { time: "10:00-14:00", desc: "Fly to Shanghai" },
-        { time: "17:00-20:00", desc: "Dinner & Roundtable" }
-      ]
-    },
-    {
-      day: "09",
-      label: "DAY 09",
-      title: "Shanghai: Business & Modernity",
-      events: [
-        { time: "10:00-12:00", desc: "Company Visit 4" },
-        { time: "12:00-14:00", desc: "Lunch" },
-        { time: "14:00-21:00", desc: "City Walk & Huangpu River Cruise" }
-      ]
-    },
-    {
-      day: "10",
-      label: "DAY 10",
-      title: "Shanghai: Innovation & Relaxation",
-      events: [
-        { time: "10:00-12:00", desc: "Company Visit 5" },
-        { time: "12:00-14:00", desc: "Lunch" },
-        { time: "15:00-18:00", desc: "Cultural Experience: Chinese Massage" }
-      ]
-    },
-    {
-      day: "11",
-      label: "DAY 11",
-      title: "Shanghai: Culture & Farewell",
-      events: [
-        { time: "10:00-12:00", desc: "JingAn Temple" },
-        { time: "12:00-14:00", desc: "Lunch" },
-        { time: "14:00-17:00", desc: "Cultural Experience: Tea Ceremony" },
-        { time: "17:00-20:00", desc: "Farewell Dinner" },
-        { time: "20:00-22:00", desc: "Late Night Clubbing" }
-      ]
-    },
-    {
-      day: "12",
-      label: "DAY 12",
       title: "Departure",
       events: [
         { time: "All Day", desc: "Check-out" }
@@ -268,14 +204,14 @@ const OverView = () => {
 
       {/* 顶部 Hero */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className={`w-full h-[300px] sm:h-[400px] md:h-[480px] bg-cover bg-center transition-all duration-1000 ease-out ${isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} style={{ backgroundImage: "url('/images/5f064686e37a9d08157256eb65e4cb0ec572e479.png')" }}></div>
+        <div className={`w-full h-[300px] sm:h-[400px] md:h-[480px] bg-cover bg-center transition-all duration-1000 ease-out ${isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/5f064686e37a9d08157256eb65e4cb0ec572e479.png')" }}></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
         <div className={`absolute left-0 bottom-0 w-full transition-all duration-1000 ease-out delay-300 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-16 w-full">
-            <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Product 08</p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">The Innovator's Journey to China</h1>
+            <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Product 06</p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">The Yunnan Circuit: Stone Forests, Erhai Lake, and Old Towns</h1>
             <div className="flex flex-wrap gap-y-2 gap-x-2 text-sm md:text-base font-medium text-white/90 mb-6">
-              <span>Beijing</span><span>·</span><span>Xi'an</span><span>·</span><span>Shanghai</span><span>·</span><span>12 Days</span>
+              <span>Kunming</span><span>·</span><span>Dali</span><span>·</span><span>Lijiang</span><span>·</span><span>7 Days</span>
             </div>
             <div className="w-16 h-1 bg-[#B41615]"></div>
           </div>
@@ -287,7 +223,7 @@ const OverView = () => {
         <div className={`transition-all duration-1000 ease-out ${isOverviewVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <h2 className="font-serif text-[46px] text-neutral-900 tracking-tight mb-6 md:mb-8">Program Overview</h2>
           <p className="text-sm sm:text-[15px] leading-7 text-neutral-600 max-w-4xl">
-            This 12-day program is designed for students and young professionals to explore China's innovation ecosystem. Participants will visit top-tier companies, meet with entrepreneurs, and experience the vibrant culture of China.
+            This 7-day program takes participants on Yunnan's classic journey — from the karst Stone Forest to the shores of Erhai Lake and the UNESCO old town of Lijiang — with two company visits and lectures woven into the sightseeing. Ethnic Bai and Naxi culture, snow mountains, and Yunnan's famous coffee and tea are all on the itinerary.
           </p>
         </div>
       </div>

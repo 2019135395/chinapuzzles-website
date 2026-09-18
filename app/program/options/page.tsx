@@ -2,6 +2,18 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 const ProgramOptionsPage = () => {
   const [isContentVisible, setIsContentVisible] = useState(false);
@@ -47,13 +59,6 @@ const ProgramOptionsPage = () => {
   }, []);
 
   const programs = [
-    // { id: "01", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "10 Days", image: "/images/7a4d7d9dec15fbc3a2572f3b12ba720985e06ed6.png", slug: "north-south-axis-beijing-chengdu-shenzhen-10days" },
-    // { id: "02", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "10 Days", image: "/images/d8084b1d397876651c72d11db8bb4accbf231fa8.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-10days" },
-    // { id: "03", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "12 Days", image: "/images/c2a058f17784f84e54dd8df6373c12d69dd1be35.png", slug: "north-south-axis-beijing-chengdu-shenzhen-12days" },
-    // { id: "04", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "12 Days", image: "/images/7a4d7d9dec15fbc3a2572f3b12ba720985e06ed6.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-12days" },
-    // { id: "05", title: "The Imperial Heartland: Ancient Capitals from Xi'an to Luoyang", cities: "Xi'an · Luoyang", days: "7 Days", image: "/images/0b9b481c84e642cee244749227e356eac551b27c.png", slug: "imperial-heartland-xian-luoyang-7days" },
-    // { id: "06", title: "The Yunnan Circuit: Stone Forests, Erhai Lake, and Old Towns", cities: "Kunming · Dali · Lijiang", days: "7 Days", image: "/images/8e0777241ca038a2e2d47936127352e0c8821ead.png", slug: "yunnan-circuit-kunming-dali-lijiang-7days" },
-    // { id: "07", title: "From Karst Paradise to the Pearl River: Nature and the Lingnan Metropolis", cities: "Guilin · Yangshuo · Guangzhou", days: "7 Days", image: "/images/300ce98b5511b73a0428406307b7f807b19dda65.png", slug: "karst-paradise-to-pearl-river-guilin-yangshuo-guangzhou-7days" },
      { id: "01", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "10 Days", image: "/images/0090909098098090090.png", slug: "north-south-axis-beijing-chengdu-shenzhen-10days" },
     { id: "02", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "10 Days", image: "/images/90909090909090909.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-10days" },
     { id: "03", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "12 Days", image: "/images/0bd08913b0e64fdab14201e4e5dd1da7a8fd7a67.png", slug: "north-south-axis-beijing-chengdu-shenzhen-12days" },
@@ -80,13 +85,13 @@ const ProgramOptionsPage = () => {
 
   return (
     <div className="bg-[#F8F7F4] text-neutral-900 overflow-x-hidden">
-      
+
       {/* 顶部 Hero 区域 */}
       <div className="relative w-full h-auto">
         <div ref={imgRef} className={`relative w-full md:h-[520px] h-[360px] overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isImgVisible ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-md'}`}>
-          <img 
-            src="/images/431af35512db9b7c47cf6818873b52dcd7e78b6c.png" 
-            alt="Program Options" 
+          <img
+            src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/431af35512db9b7c47cf6818873b52dcd7e78b6c.png"
+            alt="Program Options"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -97,7 +102,8 @@ const ProgramOptionsPage = () => {
           <div className="max-w-[1200px] mx-auto h-full relative px-6 lg:px-8">
             <div className="absolute left-0 bottom-24 w-full pointer-events-auto">
               <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Options</p>
-              <h1 className="font-serif text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+              {/* ✅ 换成 Bodoni 字体 */}
+              <h1 className={`${bodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>
                 Program Options
               </h1>
               <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
@@ -109,7 +115,8 @@ const ProgramOptionsPage = () => {
         <div ref={boxRefMobile} className={`md:hidden absolute inset-0 z-10 flex items-end p-8 transition-all duration-[1200ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] delay-500 ${isBoxVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="w-full">
             <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Options</p>
-            <h1 className="font-serif text-4xl  text-white tracking-tight leading-tight">
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h1 className={`${bodoni.className} text-4xl text-white tracking-tight leading-tight`}>
               Program Options
             </h1>
             <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
@@ -119,9 +126,10 @@ const ProgramOptionsPage = () => {
 
       {/* 主体内容区 */}
       <main className="flex-1 w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
-        
+
         <div ref={contentRef} className={`mb-14 transition-all duration-[900ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isContentVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
-          <h2 className="font-serif text-[32px] sm:text-[38px] text-neutral-900 mb-6 text-left">
+          {/* ✅ 换成 Bodoni 字体 */}
+          <h2 className={`${bodoni.className} text-[32px] sm:text-[38px] text-neutral-900 mb-6 text-left`}>
             Multiple itineraries. One real China.
           </h2>
           <p className="text-neutral-600 text-base md:text-lg leading-relaxed max-w-4xl text-left">
@@ -150,11 +158,11 @@ const ProgramOptionsPage = () => {
 
         {/* 卡片列表区域 */}
         <div ref={cardsRef} className={`flex flex-col md:flex-row md:flex-wrap gap-x-3 gap-y-10 transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] delay-300 ${isCardsVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-16 blur-sm'}`}>
-          
+
           {filteredPrograms.map((item, index) => {
             const currentRow = Math.floor(index / 3);
             const hoveredRow = hoveredIndex !== null ? Math.floor(hoveredIndex / 3) : -1;
-            
+
             const isHovered = hoveredIndex === index;
             const isSameRowSibling = hoveredRow !== -1 && currentRow === hoveredRow && !isHovered;
 
@@ -165,28 +173,28 @@ const ProgramOptionsPage = () => {
             const isLiked = likedItems[item.id];
 
             return (
-              <div 
+              <div
                 key={index}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={`group relative overflow-hidden cursor-default w-full min-h-[400px] lg:h-[560px] rounded-[5px] transition-all duration-700 ease-in-out ${currentClass} ${siblingClass} ${defaultClass}`}
               >
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
+                <img
+                  src={item.image}
+                  alt={item.title}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 {/* 底部渐变遮罩 */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 transition-colors duration-500"></div>
 
-                {/* 放在最外层：左上角 红色编号 (始终固定) */}
+                {/* 左上角 红色编号 */}
                 <div className="absolute top-0 left-0 bg-[#B41615] text-white text-sm font-bold px-4 py-2 rounded-br-lg z-10">
                     {item.id}
                 </div>
 
-                {/* 放在最外层：右上角 红心按钮 (始终固定) */}
-                <button 
-                  type="button" 
+                {/* 右上角 红心按钮 */}
+                <button
+                  type="button"
                   onClick={() => toggleLike(item.id)}
                   className={`absolute top-4 right-4 rounded-full p-3 shadow-md transition-all duration-300 cursor-pointer ${isLiked ? 'bg-[#B41615]' : 'bg-white'}`}
                 >
@@ -195,10 +203,11 @@ const ProgramOptionsPage = () => {
                     </svg>
                 </button>
 
-                {/* 内容层：强制固定在卡片最底部 */}
+                {/* 内容层 */}
                 <div className="absolute bottom-0 left-0 right-0 z-10 p-6 text-white min-w-0">
-                  
-                  <h3 className="font-serif text-[25px] text-white leading-snug mb-6 break-words text-left">
+
+                  {/* ✅ 换成 Bodoni 字体 */}
+                  <h3 className={`${bodoni.className} text-[25px] text-white leading-snug mb-6 break-words text-left`}>
                     {item.title}
                   </h3>
 
@@ -214,8 +223,7 @@ const ProgramOptionsPage = () => {
                       </div>
                     </div>
 
-                    {/* 按钮：改为只在自身hover时变红 */}
-                    <Link 
+                    <Link
                         href={`/program/options/project/${item.slug}`}
                         className="self-end shrink-0 flex items-center gap-1 text-sm font-semibold text-white bg-transparent px-4 py-2 border border-white rounded-lg transition-all duration-300 whitespace-nowrap cursor-pointer hover:bg-[#B41615] hover:border-[#B41615] hover:text-white"
                     >

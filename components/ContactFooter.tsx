@@ -3,6 +3,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import IpLocation from '@/components/IpLocation';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 interface FormErrors {
   name?: string;
@@ -99,7 +111,8 @@ const ContactFooter = () => {
                   Get in touch
                 </p>
 
-                <h2 className="text-[42px] font-serif leading-[1.15] tracking-tight text-white mb-5">
+                {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
+                <h2 className={`${bodoni.className} text-[42px] leading-[1.15] tracking-tight text-white mb-5`}>
                   Unlock your China insight.
                 </h2>
 
@@ -126,7 +139,10 @@ const ContactFooter = () => {
 
             {/* 右侧表单 */}
             <div className="flex flex-col">
-              <h3 className="text-[42px] font-serif leading-[1.15] mb-4">Send an inquiry</h3>
+              {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
+              <h3 className={`${bodoni.className} text-[42px] leading-[1.15] mb-4`}>
+                Send an inquiry
+              </h3>
 
               <p className="text-red-100/80 text-xs md:text-sm leading-relaxed mb-5">
                 Let us know your interest Program
@@ -251,7 +267,7 @@ const ContactFooter = () => {
               <ul className="space-y-1.5 text-xs">
                 <li><Link href="#" className="hover:text-white transition-colors">Program Brochure</Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors">Sample Itinerary</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">FAQs</Link></li>
+                <li><Link href="/resources/faqs" className="hover:text-white transition-colors">FAQs</Link></li>
               </ul>
             </div>
 

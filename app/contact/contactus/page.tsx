@@ -2,6 +2,18 @@
 
 import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 // === 自定义日期选择器（图标大小保持，去除加粗，修复层级遮挡） ===
 const CustomDatePicker = ({ value, onChange }) => {
@@ -10,10 +22,10 @@ const CustomDatePicker = ({ value, onChange }) => {
 
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
-  
+
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDayOfWeek = new Date(year, month, 1).getDay();
-  
+
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -59,7 +71,7 @@ const CustomDatePicker = ({ value, onChange }) => {
 
   return (
     <div className="relative z-10"> {/* 提升父级层级 */}
-      <div 
+      <div
         className="w-full bg-white border border-neutral-300 p-3.5 text-neutral-900 focus:outline-none focus:border-[#B41615] focus:ring-1 focus:ring-[#B41615] transition-colors cursor-pointer flex items-center justify-between hover:border-[#B41615] hover:shadow-md"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -220,39 +232,41 @@ const InquiryForm = () => {
 
       {/* Hero 区 */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/d31e33454fe580001fd505de2793deba36b8191f.png')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f.png')" }}></div>
         <div className="absolute inset-0 bg-[#B41615]/80"></div>
-        
+
         <div className={`relative z-10 max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 h-[240px] md:h-[330px] flex flex-col justify-center transition-all duration-[1200ms] ease-out ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <p className={`text-xs font-bold uppercase tracking-widest mb-4 text-white transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '200ms' : '0ms' }}>
             Home / Contact
           </p>
-          <h1 className={`font-serif text-5xl md:text-6xl text-white tracking-tight transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '500ms' : '0ms' }}>
+          {/* ✅ 换成 Bodoni 字体 */}
+          <h1 className={`${bodoni.className} text-5xl md:text-6xl text-white tracking-tight transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '500ms' : '0ms' }}>
             Contact Us
           </h1>
         </div>
       </div>
 
       <main className="flex-1 w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
-        
-        {/* Stay Connected 板块：分段出场 */}
+
+        {/* Stay Connected 板块 */}
         <div ref={contentRef} className={`mb-16 md:mb-24 transition-all duration-1000 ease-out ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <div className="bg-[#F4F1EA] border-l-[10px] border-[#B41615] p-8 md:p-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              
+
               <div className={`flex flex-col justify-center transition-all duration-1000 ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isContentVisible ? '0ms' : '0ms' }}>
                 <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-4">STAY CONNECTED</p>
-                <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 mb-4">Connect with our team</h2>
+                {/* ✅ 换成 Bodoni 字体 */}
+                <h2 className={`${bodoni.className} text-3xl md:text-4xl text-neutral-900 mb-4`}>Connect with our team</h2>
                 <p className="text-neutral-600 leading-relaxed">
-                  Scan WeChat or WhatsApp for a quick reply. Follow our updates and keep in touch.
+                  Scan  Instagram or WhatsApp for a quick reply. Follow our updates and keep in touch.
                 </p>
               </div>
 
               <div className={`flex items-center justify-around gap-8 transition-all duration-1000 ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isContentVisible ? '200ms' : '0ms' }}>
                 <div className="text-center">
                   <img src="/images/d291e3a6d51c9d085bb3d9202f805efb138990fd.png" alt="WeChat QR" className="w-32 h-32 bg-white p-2 shadow-md mx-auto mb-3" />
-                  <p className="text-sm font-semibold text-neutral-900">WeChat</p>
-                  <p className="text-xs text-neutral-500">Scan to add us</p>
+                  <p className="text-sm font-semibold text-neutral-900">Instagram</p>
+                  <p className="text-xs text-neutral-500">Scan to follow us</p>
                 </div>
                 <div className="text-center">
                   <img src="/images/bb3cd0824713439c8885baa37ee077d07224f5d5.png" alt="WhatsApp QR" className="w-32 h-32 bg-white p-2 shadow-md mx-auto mb-3" />
@@ -280,8 +294,8 @@ const InquiryForm = () => {
                   </div>
                   <div className="flex items-center justify-between border-b border-neutral-300 pb-3">
                     <div>
-                      <p className="text-xs font-semibold text-neutral-500 uppercase">WECHAT</p>
-                      <p className="text-neutral-900 mt-1">+86 18519706701</p>
+                      <p className="text-xs font-semibold text-neutral-500 uppercase">Phone</p>
+                      <p className="text-neutral-900 mt-1">+852 6348 2146</p>
                     </div>
                     <a href="#" className="text-xs font-bold text-[#B41615] hover:text-[#8a0f0f] transition-colors">OPEN ↗</a>
                   </div>
@@ -292,18 +306,19 @@ const InquiryForm = () => {
           </div>
         </div>
 
-        {/* 表单区：分段出场 */}
+        {/* 表单区 */}
         <div ref={formRef} className={`transition-all duration-1000 ease-out ${isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          
+
           <div className={`mb-12 transition-all duration-1000 ${isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isFormVisible ? '0ms' : '0ms' }}>
-            <h2 className="font-serif text-4xl md:text-5xl text-neutral-900 mb-4">Let’s get in touch</h2>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h2 className={`${bodoni.className} text-4xl md:text-5xl text-neutral-900 mb-4`}>Let's get in touch</h2>
             <p className="text-neutral-600 leading-relaxed">
               Tell us about your preferred program, group profile and expected travel time. We will reply within 2-3 business days.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-            
+
             <div className={`space-y-8 transition-all duration-1000 ${isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isFormVisible ? '200ms' : '0ms' }}>
               <div>
                 <label className="block text-sm font-semibold text-neutral-900 mb-2">Name</label>
@@ -358,7 +373,7 @@ const InquiryForm = () => {
             </div>
 
             <div className={`md:col-span-2 mt-4 transition-all duration-1000 ${isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isFormVisible ? '600ms' : '0ms' }}>
-              <button 
+              <button
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}

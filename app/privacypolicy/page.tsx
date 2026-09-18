@@ -2,6 +2,18 @@
 
 import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 const PrivacyPolicyPage = () => {
   // 出场动画控制
@@ -67,23 +79,24 @@ const PrivacyPolicyPage = () => {
 
   return (
     <div className="bg-[#F8F7F4] text-neutral-900">
-      
+
       {/* ==================== 顶部红色 Hero 区域 ==================== */}
       <div ref={heroRef} className={`w-full bg-[#B41615] text-white transition-all duration-1000 ease-out ${
         isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-[330px] flex flex-col justify-center">
           <p className="text-xs font-bold uppercase tracking-widest mb-4">Home / Privacy Policy</p>
-          <h1 className="font-serif text-5xl md:text-6xl tracking-tight">Privacy Policy</h1>
+          {/* ✅ 换成 Bodoni 字体 */}
+          <h1 className={`${bodoni.className} text-5xl md:text-6xl tracking-tight`}>Privacy Policy</h1>
         </div>
       </div>
 
       {/* ==================== 主体内容区 ==================== */}
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
-        
+
         {/* 引言与章节列表 */}
         <div ref={contentRef} className="transition-all duration-1000">
-          
+
           {/* 引言段落：最先出场（0ms延迟） */}
           <p className={`text-neutral-500 text-base leading-relaxed max-w-4xl mb-20 transition-all duration-1000 ease-out ${
             isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
@@ -96,24 +109,24 @@ const PrivacyPolicyPage = () => {
           {/* 章节列表：依次出场（每个增加150ms延迟） */}
           <div className="flex flex-col gap-16">
             {sections.map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`group transition-all duration-1000 ease-out ${
                   isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: isContentVisible ? `${200 + index * 150}ms` : '0ms' }}
               >
-                {/* 标题：Hover 变红 */}
-                <h2 className="font-serif text-4xl md:text-5xl text-neutral-900 mb-6 transition-colors duration-300 group-hover:text-[#B41615]">
+                {/* ✅ 标题换成 Bodoni 字体，Hover 变红 */}
+                <h2 className={`${bodoni.className} text-4xl md:text-5xl text-neutral-900 mb-6 transition-colors duration-300 group-hover:text-[#B41615]`}>
                   {item.title}
                 </h2>
-                
+
                 {/* 正文 */}
                 <p className="text-neutral-600 text-base leading-relaxed max-w-4xl mb-8">
                   {item.text}
                 </p>
-                
-                {/* 红色下划线：Hover 时颜色加深或轻微加粗 */}
+
+                {/* 红色下划线 */}
                 <div className="w-full h-[2px] bg-[#B41615] transition-all duration-500 group-hover:h-[3px] group-hover:bg-[#8a0f0f]"></div>
               </div>
             ))}
@@ -122,9 +135,9 @@ const PrivacyPolicyPage = () => {
         </div>
       </main>
 
-      
+
       <ContactFooter />
-      
+
     </div>
   );
 };

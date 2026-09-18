@@ -2,6 +2,18 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 const philosophyText = "China is a global economic powerhouse where ancient heritage meets fast-paced innovation — and no article or headline can substitute for being there. China Puzzles connects you with an authentic, first-hand China experience. Our programs blend high-tech industry visits, hands-on business engagement and immersive cultural travel. We help global visitors, business professionals and university students see how ancient traditions intersect with cutting-edge development — on the ground, in real time.";
 
@@ -110,21 +122,22 @@ const Highlights = () => {
 
   return (
     <div className="bg-white pt-8 sm:pt-12 flex flex-col">
-      
+
       {/* ==================== 板块1 Why Choose China Puzzles ==================== */}
       <div className="max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 order-1">
         {/* 标题 */}
         <div className={`mb-8 text-center transition-all duration-1000 ease-out ${isWhyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="group">
-            <h2 className="font-serif text-[30px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap">
+            {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
+            <h2 className={`${bodoni.className} text-[30px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>
               Why Choose China Puzzles
             </h2>
             <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-12 lg:w-0 lg:group-hover:w-[240px]"></div>
           </div>
         </div>
-        
+
         <div ref={whyChooseRef} className="flex flex-col lg:flex-row lg:h-[520px] overflow-hidden">
-          
+
           {/* 左侧图片 */}
           <div className={`relative w-full lg:w-1/2 h-[300px] lg:h-full shrink-0 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-16 blur-md'}`}>
             <img src="/images/5933318cfea28dadecb6d7311b101f43e37746cd.jpg" alt="Why Choose China Puzzles" className="absolute inset-0 w-full h-full object-cover" />
@@ -134,7 +147,7 @@ const Highlights = () => {
           <div className={`relative lg:w-1/2 h-full bg-[#F1EEE7] flex items-center p-8 lg:p-16 transition-all duration-700 ease-out ${isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-16 blur-md'}`}>
             <div className="w-full">
               <div className="space-y-4">
-                <p 
+                <p
                   className={`text-sm md:text-[15px] leading-7 text-neutral-600 transition-all duration-1000 ease-out ${
                     isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md'
                   }`}
@@ -142,8 +155,8 @@ const Highlights = () => {
                 >
                   {philosophyText}
                 </p>
-                
-                <p 
+
+                <p
                   className={`text-sm md:text-[15px] leading-7 text-neutral-600 transition-all duration-1000 ease-out ${
                     isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md'
                   }`}
@@ -151,8 +164,8 @@ const Highlights = () => {
                 >
                   Our program combines high-tech industry visits, hands-on business opportunities, and immersive cultural travel.
                 </p>
-                
-                <p 
+
+                <p
                   className={`text-sm md:text-[15px] leading-7 text-neutral-600 transition-all duration-1000 ease-out ${
                     isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md'
                   }`}
@@ -166,7 +179,7 @@ const Highlights = () => {
         </div>
       </div>
 
-      {/* ==================== 板块3 Program Options（移动端/ipad端排第二，桌面端排第三） ==================== */}
+      {/* ==================== 板块3 Program Options ==================== */}
       <div className="mt-10 w-full bg-white order-2 lg:order-3">
         <div ref={programOptionsRef} className="py-8 sm:py-10 lg:py-12">
           <div className={`transition-all duration-1000 ease-out ${isProgramOptionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
@@ -174,7 +187,8 @@ const Highlights = () => {
               {/* 标题 */}
               <div className={`mb-8 text-center transition-all duration-1000 ease-out ${isProgramOptionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="group">
-                  <h2 className="font-serif text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap">
+                  {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
+                  <h2 className={`${bodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>
                     Program Options
                   </h2>
                   <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-12 lg:w-0 lg:group-hover:w-[240px]"></div>
@@ -227,110 +241,113 @@ const Highlights = () => {
         </div>
       </div>
 
-      {/* ==================== 板块2 Our Advantages（移动端/ipad端排第三，桌面端排第二） ==================== */}
-<div
-  ref={advantagesRef}
-  className={`mt-10 w-full bg-white transition-all duration-[1000ms] ease-out order-3 lg:order-2 ${
-    isAdvantagesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
-  }`}
->
-  <div className="py-8 sm:py-10 lg:py-12">
-    <div className="max-w-[1264px] mx-auto w-full px-4 sm:px-6 lg:px-8">
-      {/* 标题 */}
-      <div className="mb-6">
-        <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-3">WHY CHINA PUZZLES</p>
-        <h2 className="font-serif text-[42px] text-neutral-900 tracking-tight mb-3">Unfold a real picture of China. </h2>
-      </div>
+      {/* ==================== 板块2 Our Advantages ==================== */}
+      <div
+        ref={advantagesRef}
+        className={`mt-10 w-full bg-white transition-all duration-[1000ms] ease-out order-3 lg:order-2 ${
+          isAdvantagesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+        }`}
+      >
+        <div className="py-8 sm:py-10 lg:py-12">
+          <div className="max-w-[1264px] mx-auto w-full px-4 sm:px-6 lg:px-8">
+            {/* 标题 */}
+            <div className="mb-6">
+              <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-3">WHY CHINA PUZZLES</p>
+              {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
+              <h2 className={`${bodoni.className} text-[42px] text-neutral-900 tracking-tight mb-3`}>
+                Unfold a real picture of China.
+              </h2>
+            </div>
 
-      <div className="flex flex-col lg:flex-row gap-0 lg:gap-14 lg:items-stretch">
-        {/* 左侧列表（移动端：每一项下方附带对应图片；桌面端：纯列表） */}
-        <div className="lg:w-1/2 flex flex-col justify-between">
-          {advantages.map((adv, index) => {
-            const isActive = activeAdvantage === index;
-            return (
-              <div key={index} className="border-b border-neutral-200">
-                {/* 列表项 */}
-                <div
-                  onMouseEnter={() => setActiveAdvantage(index)}
-                  onClick={() => setActiveAdvantage(index)}
-                  className="group relative flex justify-between items-start py-7 cursor-pointer transition-colors duration-300"
-                >
-                  <span
-                    className={`absolute left-0 top-2 bottom-2 w-[3px] bg-[#B41615] transition-opacity duration-300 ${
-                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                    }`}
-                  />
-                  <div className="flex gap-5 pl-6 w-full">
-                    <span className={`text-sm mt-1 font-medium transition-colors duration-300 ${isActive ? 'text-[#B41615]' : 'text-neutral-400'}`}>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <h3 className={`font-serif text-2xl md:text-[28px] leading-snug whitespace-pre-line transition-colors duration-300 ${isActive ? 'text-neutral-900' : 'text-neutral-700'}`}>
-                        {adv.title}
-                      </h3>
-                      <p className={`text-sm mt-2 transition-colors duration-300 ${isActive ? 'text-neutral-600' : 'text-neutral-500'}`}>
-                        {adv.description}
-                      </p>
-                    </div>
-                  </div>
-                  <ChevronRight
-                    size={20}
-                    className={`self-center transition-colors duration-300 ${isActive ? 'text-[#B41615]' : 'text-neutral-400 group-hover:text-neutral-600'}`}
-                  />
-                </div>
+            <div className="flex flex-col lg:flex-row gap-0 lg:gap-14 lg:items-stretch">
+              {/* 左侧列表（移动端：每一项下方附带对应图片；桌面端：纯列表） */}
+              <div className="lg:w-1/2 flex flex-col justify-between">
+                {advantages.map((adv, index) => {
+                  const isActive = activeAdvantage === index;
+                  return (
+                    <div key={index} className="border-b border-neutral-200">
+                      {/* 列表项 */}
+                      <div
+                        onMouseEnter={() => setActiveAdvantage(index)}
+                        onClick={() => setActiveAdvantage(index)}
+                        className="group relative flex justify-between items-start py-7 cursor-pointer transition-colors duration-300"
+                      >
+                        <span
+                          className={`absolute left-0 top-2 bottom-2 w-[3px] bg-[#B41615] transition-opacity duration-300 ${
+                            isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                          }`}
+                        />
+                        <div className="flex gap-5 pl-6 w-full">
+                          <span className={`text-sm mt-1 font-medium transition-colors duration-300 ${isActive ? 'text-[#B41615]' : 'text-neutral-400'}`}>
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <div>
+                            <h3 className={`font-serif text-2xl md:text-[28px] leading-snug whitespace-pre-line transition-colors duration-300 ${isActive ? 'text-neutral-900' : 'text-neutral-700'}`}>
+                              {adv.title}
+                            </h3>
+                            <p className={`text-sm mt-2 transition-colors duration-300 ${isActive ? 'text-neutral-600' : 'text-neutral-500'}`}>
+                              {adv.description}
+                            </p>
+                          </div>
+                        </div>
+                        <ChevronRight
+                          size={20}
+                          className={`self-center transition-colors duration-300 ${isActive ? 'text-[#B41615]' : 'text-neutral-400 group-hover:text-neutral-600'}`}
+                        />
+                      </div>
 
-                {/* 移动端 / ipad端：仅在当前项激活时，在该项下方展开对应图片和文字 */}
-                <div
-                  className={`lg:hidden grid transition-all duration-500 ease-out ${
-                    isActive ? 'grid-rows-[1fr] opacity-100 mb-4' : 'grid-rows-[0fr] opacity-0 mb-0'
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <img
-                      src={adv.image}
-                      alt={adv.title}
-                      className="w-full h-[200px] object-cover"
-                    />
-                    <div className="bg-[#B41615] p-6 md:p-7 text-white">
-                      <p className="text-xs uppercase tracking-widest font-semibold mb-2 opacity-90">ACTIVE ADVANTAGE</p>
-                      <h3 className="font-serif text-xl md:text-2xl leading-snug mb-2 whitespace-pre-line">
-                        {adv.title}
-                      </h3>
-                      <p className="text-sm opacity-85 leading-relaxed">
-                        {adv.longDesc}
-                      </p>
+                      {/* 移动端 / ipad端展开内容 */}
+                      <div
+                        className={`lg:hidden grid transition-all duration-500 ease-out ${
+                          isActive ? 'grid-rows-[1fr] opacity-100 mb-4' : 'grid-rows-[0fr] opacity-0 mb-0'
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <img
+                            src={adv.image}
+                            alt={adv.title}
+                            className="w-full h-[200px] object-cover"
+                          />
+                          <div className="bg-[#B41615] p-6 md:p-7 text-white">
+                            <p className="text-xs uppercase tracking-widest font-semibold mb-2 opacity-90">ACTIVE ADVANTAGE</p>
+                            <h3 className="font-serif text-xl md:text-2xl leading-snug mb-2 whitespace-pre-line">
+                              {adv.title}
+                            </h3>
+                            <p className="text-sm opacity-85 leading-relaxed">
+                              {adv.longDesc}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  );
+                })}
+              </div>
+
+              {/* 桌面端：右侧图片区域 */}
+              <div className="hidden lg:block lg:w-1/2 relative lg:h-[650px] lg:min-h-[450px] overflow-hidden">
+                {advantages.map((adv, idx) => (
+                  <img
+                    key={idx}
+                    src={adv.image}
+                    alt={adv.title}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${activeAdvantage === idx ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                ))}
+                <div className="absolute bottom-0 left-0 right-0 bg-[#B41615]/95 p-7 md:p-8 text-white">
+                  <p className="text-xs uppercase tracking-widest font-semibold mb-2 opacity-90">ACTIVE ADVANTAGE</p>
+                  <h3 className="font-serif text-2xl md:text-[28px] leading-snug mb-2 whitespace-pre-line">
+                    {advantages[activeAdvantage].title}
+                  </h3>
+                  <p className="text-sm opacity-85 leading-relaxed">
+                    {advantages[activeAdvantage].longDesc}
+                  </p>
                 </div>
               </div>
-            );
-          })}
-        </div>
-
-        {/* 桌面端：右侧图片区域（保持原样，绝对定位叠加切换） */}
-        <div className="hidden lg:block lg:w-1/2 relative lg:h-[650px] lg:min-h-[450px] overflow-hidden">
-          {advantages.map((adv, idx) => (
-            <img
-              key={idx}
-              src={adv.image}
-              alt={adv.title}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${activeAdvantage === idx ? 'opacity-100' : 'opacity-0'}`}
-            />
-          ))}
-          <div className="absolute bottom-0 left-0 right-0 bg-[#B41615]/95 p-7 md:p-8 text-white">
-            <p className="text-xs uppercase tracking-widest font-semibold mb-2 opacity-90">ACTIVE ADVANTAGE</p>
-            <h3 className="font-serif text-2xl md:text-[28px] leading-snug mb-2 whitespace-pre-line">
-              {advantages[activeAdvantage].title}
-            </h3>
-            <p className="text-sm opacity-85 leading-relaxed">
-              {advantages[activeAdvantage].longDesc}
-            </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
     </div>
   );
 };

@@ -1,7 +1,19 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import ContactFooter from '@/components/ContactFooterTwo'; 
+import ContactFooter from '@/components/ContactFooterTwo';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 const faqs = [
   { q: "Do I need a visa to tour to China?", a: "Inter-city transport, accommodation, meals, scheduled cultural activities and company visits are included. International airfare, visa fees and personal expenses are excluded." },
@@ -19,11 +31,11 @@ const faqs = [
 
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState(0);
-  
+
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isBottomVisible, setIsBottomVisible] = useState(false);
-  
+
   const heroRef = useRef(null);
   const contentRef = useRef(null);
   const bottomRef = useRef(null);
@@ -75,25 +87,26 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-[#F8F7F4] text-neutral-900 flex flex-col">
-      
+
       {/* 顶部 Hero 区域 */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bottom" style={{ backgroundImage: "url('/images/4c952a2db10f014558457ed6621f67d5d6dc3612.jpg')" }}></div>
+        <div className="absolute inset-0 bg-cover bg-center bottom" style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612.jpg')" }}></div>
         <div className="absolute inset-0 bg-[#B41615]/80"></div>
-        
+
         <div className={`relative z-10 max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 h-[240px] md:h-[330px] flex flex-col justify-center transition-all duration-[1200ms] ease-out ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
         }`}>
           <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Home / Resources</p>
-          <h1 className="font-serif text-5xl md:text-7xl text-white tracking-tight">Resources</h1>
+          {/* ✅ 换成 Bodoni 字体 */}
+          <h1 className={`${bodoni.className} text-5xl md:text-7xl text-white tracking-tight`}>Resources</h1>
         </div>
       </div>
 
       {/* FAQ主内容区 */}
       <main className="flex-1 w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
-        
+
         <div ref={contentRef}>
-          
+
           {/* 第一板块：Program Flyer */}
           <div className={`bg-[#F1EEE7] relative overflow-hidden mb-16 transition-all duration-[1200ms] ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
@@ -109,10 +122,10 @@ export default function FAQPage() {
                   Download the latest program brochure for itinerary highlights, inclusions and inquiry details.
                 </p>
               </div>
-              
-              <a 
-                href="/2025ChinaPuzzlesFlyer.pdf" 
-                download="2025ChinaPuzzles_Flyer.pdf"
+
+              <a
+                href="/ChinaPuzzles2026-Brochure.pdf"
+                download="ChinaPuzzles2026-Brochure.pdf"
                 className={`bg-[#B41615] hover:bg-[#8a0f0f] text-white font-semibold py-3 transition-all duration-1000 ease-out w-full max-w-[270px] md:w-[270px] whitespace-nowrap inline-flex items-center justify-center z-20 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
@@ -127,7 +140,8 @@ export default function FAQPage() {
           <div className={`mb-10 transition-all duration-[1000ms] ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`} style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}>
-            <h2 className="font-serif text-4xl md:text-5xl text-neutral-900 tracking-tight">FAQs</h2>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h2 className={`${bodoni.className} text-4xl md:text-5xl text-neutral-900 tracking-tight`}>FAQs</h2>
           </div>
 
           {/* FAQ 列表 */}
@@ -135,8 +149,8 @@ export default function FAQPage() {
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   style={{ transitionDelay: isVisible ? `${200 + index * 80}ms` : '0ms' }}
                   className={`bg-white transition-all duration-700 ease-in-out border-l-4 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -171,8 +185,8 @@ export default function FAQPage() {
             })}
           </div>
 
-          {/* 底部板块：Official Reference（滑动到底部才触发，图片宽度140px） */}
-          <div 
+          {/* 底部板块：Official Reference */}
+          <div
             ref={bottomRef}
             className={`bg-[#F1EEE7] p-8 md:p-12 transition-all duration-[1200ms] ease-out relative overflow-hidden ${
               isBottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
@@ -180,17 +194,18 @@ export default function FAQPage() {
             style={{ transitionDelay: isBottomVisible ? '0ms' : '0ms' }}
           >
             <div className="flex flex-col md:flex-row justify-between items-center gap-10 relative z-10">
-              
+
               <div className="flex-1">
                 <div className={`transition-all duration-1000 ease-out ${isBottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isBottomVisible ? '0ms' : '0ms' }}>
                   <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-4">Official Reference</p>
-                  <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 mb-4">A Welcome Guide to China</h2>
+                  {/* ✅ 换成 Bodoni 字体 */}
+                  <h2 className={`${bodoni.className} text-3xl md:text-4xl text-neutral-900 mb-4`}>A Welcome Guide to China</h2>
                   <p className="text-neutral-600 text-sm md:text-base mb-8">An official reference for travelling, living and getting settled in China.</p>
                 </div>
-                
-                <a 
-                  href="#" 
-                  target="_blank" 
+
+                <a
+                  href="#"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={`bg-[#B41615] hover:bg-[#8a0f0f] text-white font-semibold py-3 transition-all duration-1000 ease-out inline-flex items-center justify-center whitespace-nowrap rounded-full w-full max-w-[205px] md:w-[205px] ${
                     isBottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -200,12 +215,11 @@ export default function FAQPage() {
                   Open guide ↗
                 </a>
               </div>
-              
-              {/* 右侧图片：宽度修改为 140px，路径替换 */}
+
               <div className={`w-[140px] flex-shrink-0 transition-all duration-1000 ease-out ${isBottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isBottomVisible ? '150ms' : '0ms' }}>
-                <img 
-                  src="/images/2d56b5f8225092ced8654603c517820cd3298bee.jpg" 
-                  alt="A Welcome Guide to China" 
+                <img
+                  src="/images/2d56b5f8225092ced8654603c517820cd3298bee.jpg"
+                  alt="A Welcome Guide to China"
                   className="w-full h-auto object-contain shadow-xl"
                 />
               </div>
@@ -217,7 +231,7 @@ export default function FAQPage() {
       </main>
 
       <ContactFooter />
-      
+
     </div>
   );
 }

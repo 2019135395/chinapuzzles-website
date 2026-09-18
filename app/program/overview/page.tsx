@@ -3,6 +3,18 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
+import localFont from 'next/font/local';
+
+// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
+// 如果编译报错找不到路径，请参考文末的“路径调整”说明
+const bodoni = localFont({
+  src: [
+    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-bodoni',
+});
 
 const OverView = () => {
   const [isImgVisible, setIsImgVisible] = useState(false);
@@ -65,13 +77,13 @@ const OverView = () => {
 
   return (
     <div className="bg-[#FCFAF7] overflow-hidden">
-      
+
       {/* 顶部 Hero 区域 */}
       <div className="relative w-full h-auto">
         <div ref={imgRef} className={`relative w-full md:h-[520px] h-[360px] overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isImgVisible ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-md'}`}>
-          <img 
-            src="/images/e7503873b899ccc56e6c16037b4a39bf8b257d10.png" 
-            alt="Program Overview" 
+          <img
+            src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/e7503873b899ccc56e6c16037b4a39bf8b257d10.png"
+            alt="Program Overview"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -81,7 +93,8 @@ const OverView = () => {
           <div className="max-w-[1200px] mx-auto h-full relative px-6 lg:px-8">
             <div className="absolute left-0 bottom-24 w-full pointer-events-auto">
               <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Overview</p>
-              <h1 className="font-serif text-5xl lg:text-6xl text-white tracking-tight leading-tight">Program Overview</h1>
+              {/* ✅ 换成 Bodoni 字体 */}
+              <h1 className={`${bodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>Program Overview</h1>
               <p className="text-sm md:text-base text-white/90 font-light drop-shadow-md mt-6">Deepen your understanding of Chinese culture, explore the business landscape, and build lasting connections.</p>
               <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
             </div>
@@ -91,7 +104,8 @@ const OverView = () => {
         <div ref={boxRefMobile} className={`md:hidden absolute inset-0 z-10 flex items-end p-8 transition-all duration-[1200ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] delay-500 ${isBoxVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="w-full">
             <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Overview</p>
-            <h1 className="font-serif text-4xl text-white tracking-tight leading-tight">Program Overview</h1>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h1 className={`${bodoni.className} text-4xl text-white tracking-tight leading-tight`}>Program Overview</h1>
             <p className="text-sm text-white/90 font-light drop-shadow-md mt-6">Deepen your understanding of Chinese culture, explore the business landscape, and build lasting connections.</p>
             <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
           </div>
@@ -102,21 +116,22 @@ const OverView = () => {
       <div ref={overviewRef} className="w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 mt-28 md:mt-30 mb-28 md:mb-36">
         <div className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isOverviewVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="group">
-            <h2 className="font-serif text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap">Program Highlight</h2>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h2 className={`${bodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>Program Highlight</h2>
             <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-16 lg:w-0 lg:group-hover:w-[240px]"></div>
           </div>
           <div className="flex flex-col lg:flex-row lg:flex-wrap gap-3">
             {experiences.map((exp, idx) => {
               const isHovered = hoveredIndex === idx;
               const isSibling = hoveredIndex !== null && hoveredIndex !== idx;
-              
+
               const currentClass = isHovered ? 'lg:basis-[590px] lg:grow-0 lg:shrink z-10 shadow-2xl' : '';
               const siblingClass = isSibling ? 'lg:basis-[290px] lg:grow-0 lg:shrink opacity-80 scale-[0.98]' : '';
               const defaultClass = (!isHovered && !isSibling) ? 'lg:basis-[calc((100%-1.5rem)/3)] lg:grow-0 lg:shrink' : '';
 
               return (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={`group relative overflow-hidden cursor-pointer w-full transition-all duration-700 ease-in-out ${currentClass} ${siblingClass} ${defaultClass}`}
@@ -142,7 +157,8 @@ const OverView = () => {
       <div ref={scheduleRef} className="w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 mb-28 md:mb-36">
         <div className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isScheduleVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="group">
-            <h2 className="font-serif text-[32px] lg:text-[42px] text-neutral-900 text-center mb-6 whitespace-normal lg:whitespace-nowrap">What You Will Gain</h2>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h2 className={`${bodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center mb-6 whitespace-normal lg:whitespace-nowrap`}>What You Will Gain</h2>
             <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-16 lg:w-0 lg:group-hover:w-[240px]"></div>
           </div>
 
@@ -151,16 +167,16 @@ const OverView = () => {
               <div key={idx} className={`text-center group transition-all duration-1000 ${isScheduleVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`} style={{ transitionDelay: isScheduleVisible ? `${idx * 150}ms` : '0ms' }}>
                 <div className={`relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] lg:w-[146px] lg:h-[146px] mx-auto mb-6 transition-all duration-700 ${isScheduleVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`} style={{ transitionDelay: isScheduleVisible ? `${150 + idx * 100}ms` : '0ms' }}>
                     <svg className="w-full h-full rotate-0 transition-transform duration-[1000ms] ease-in-out group-hover:rotate-[360deg]" viewBox="0 0 146 146">
-                      <circle 
-                        cx="73" cy="73" r="70" 
-                        fill="none" 
-                        stroke="#B41615" 
-                        strokeWidth="2" 
+                      <circle
+                        cx="73" cy="73" r="70"
+                        fill="none"
+                        stroke="#B41615"
+                        strokeWidth="2"
                         strokeLinecap="round"
                         className="transition-[stroke-width] duration-[1000ms] ease-in-out group-hover:stroke-[4]"
                       />
                     </svg>
-                    <div 
+                    <div
                       className="absolute inset-0 rounded-full bg-no-repeat transition-transform duration-700 group-hover:scale-110"
                       style={{ backgroundImage: `url('${dim.iconBg}')`, backgroundSize: '100% 100%' }}
                     ></div>
@@ -185,7 +201,8 @@ const OverView = () => {
         <div className="bg-[#F8F7F4] p-[40px]">
           <div className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isDetailsVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
             <p className="text-sm font-bold tracking-widest text-[#B41615] uppercase mb-3">Program Details</p>
-            <h2 className="font-serif text-[32px] md:text-4xl text-neutral-900 tracking-tight">What's included. What's not.</h2>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h2 className={`${bodoni.className} text-[32px] md:text-4xl text-neutral-900 tracking-tight`}>What's included. What's not.</h2>
             <div className="w-28 h-1 bg-[#B41615] mt-8 mb-12"></div>
 
             <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 transition-all duration-1000 ${isDetailsVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`} style={{ transitionDelay: isDetailsVisible ? '200ms' : '0ms' }}>
@@ -233,16 +250,17 @@ const OverView = () => {
       <div ref={ctaRef} className={`relative w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 mb-28 md:mb-36 transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isCtaVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
         <div className="bg-[#B41615] p-6 sm:p-12 lg:p-[76px] relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('/images/633f20cbc6afb0830959c56412676588d369ac16.jpg')] bg-cover bg-center opacity-20 mix-blend-multiply pointer-events-none"></div>
-          
+
           <div className="relative max-w-2xl">
             <p className="text-sm font-bold tracking-widest text-white/80 uppercase mb-3">Eligibility</p>
-            <h2 className="font-serif text-[32px] md:text-5xl text-white tracking-tight mb-6 whitespace-normal lg:whitespace-nowrap">Ready to meet China where it is.</h2>
-            
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h2 className={`${bodoni.className} text-[32px] md:text-5xl text-white tracking-tight mb-6 whitespace-normal lg:whitespace-nowrap`}>Ready to meet China where it is.</h2>
+
             <div className={`transition-all duration-1000 ${isCtaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: isCtaVisible ? '200ms' : '0ms' }}>
               <p className="text-white/80 text-base leading-relaxed mb-10">
                Global visitors, business professionals and International students are welcome to apply. Custom program for institutions or groups can be made through an inquiry.
               </p>
-              
+
               <Link
                 href="/program/options"
                 className="inline-flex items-center justify-center w-full sm:w-auto max-w-[310px] rounded-full border-2 border-white text-white font-semibold py-3 px-8 hover:bg-white hover:text-[#B41615] transition-colors duration-300"
