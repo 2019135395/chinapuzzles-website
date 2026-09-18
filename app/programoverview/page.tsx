@@ -64,17 +64,32 @@ const ProgramPage = () => {
   return (
     <div className="bg-white  sm:pt-22 overflow-hidden">
       
-           {/* ==================== 顶部 Hero 部分 ==================== */}
+      {/* ==================== 顶部 Hero 部分 ==================== */}
       <div ref={heroRef} className="relative">
-        <div className={`w-full h-[300px] sm:h-[400px] md:h-[500px] bg-cover bg-center transition-all duration-1000 ease-out ${
+        {/* 图片容器：移动端/iPad 使用另一张图，最高 580px */}
+        <div className={`relative w-full h-[300px] sm:h-[400px] md:h-[500px] max-h-[580px] overflow-hidden transition-all duration-1000 ease-out ${
           isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-        }`} style={{ backgroundImage: "url('/images/7a4d7d9dec15fbc3a2572f3b12ba720985e06ed6.png')" }}></div>
-        
+        }`}>
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="/images/7a4d7d9dec15fbc3a2572f3b12ba720985e06ed6.png"
+            />
+            {/* 移动端 & iPad（<1024px）：使用另一张图，请替换成实际图片路径 */}
+            <img
+              src="/images/hero-mobile.jpg"
+              alt="The North-South Axis: Empire, Pandas, and the Silicon Coast"
+              className="w-full h-full object-cover object-center"
+            />
+          </picture>
+        </div>
+
         {/* 外层容器 */}
         <div className={`max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-1000 delay-300 ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          {/* 红色内容块：修改了这里 */}
+          {/* 红色内容块 */}
           <div className="bg-[#B81C1C] text-white p-6 sm:p-8 md:p-12 -mt-16 sm:-mt-20 md:-mt-32 shadow-2xl w-full md:w-[920px] md:-ml-6 lg:-ml-8">
             <p className="text-xs font-bold tracking-widest uppercase mb-4">Program 01</p>
             <h1 className="font-serif text-2xl sm:text-3xl md:text-5xl leading-tight mb-6 md:mb-8">
@@ -130,8 +145,8 @@ const ProgramPage = () => {
                 >
                   {/* Day 标签 */}
                   <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 bg-[#B81C1C] text-white flex items-center justify-center text-[18px] font-semibold transition-transform duration-300 group-hover:scale-105">
-  {item.day}
-</div>
+                    {item.day}
+                  </div>
                   {/* 中间文字：强制左对齐 */}
                   <div className="flex-1 w-full md:w-auto text-left px-0 md:px-8">
                     <h3 className="font-serif text-xl md:text-3xl text-neutral-900 mb-3 transition-colors duration-300 group-hover:text-[#B81C1C]">
@@ -160,7 +175,7 @@ const ProgramPage = () => {
         </div>
       </div>
 
-            {/* ==================== 底部 CTA 部分 ==================== */}
+      {/* ==================== 底部 CTA 部分 ==================== */}
       <div ref={ctaRef} className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28">
         <div className={`transition-all duration-1000 ease-out ${
           isCtaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
@@ -170,7 +185,7 @@ const ProgramPage = () => {
 
         </div>
       </div>
- <ContactFooter />
+      <ContactFooter />
     </div>
   );
 };

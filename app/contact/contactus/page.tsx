@@ -232,17 +232,36 @@ const InquiryForm = () => {
 
       {/* Hero 区 */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f.png')" }}></div>
-        <div className="absolute inset-0 bg-[#B41615]/80"></div>
+        {/* 图片容器：移动端/iPad 使用 -mobile 图片，最高 580px */}
+        <div className="relative w-full h-[360px] md:h-[520px] max-h-[580px] overflow-hidden">
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f.png"
+            />
+            {/* 移动端 & iPad（<1024px）：使用原图文件名加 -mobile 的图片 */} 
+            <img
+              src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f-mobile.png"
+              alt="Contact Us"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+          {/* 红色遮罩层 */}
+          <div className="absolute inset-0 bg-[#B41615]/80"></div>
+        </div>
 
-        <div className={`relative z-10 max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 h-[240px] md:h-[330px] flex flex-col justify-center transition-all duration-[1200ms] ease-out ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <p className={`text-xs font-bold uppercase tracking-widest mb-4 text-white transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '200ms' : '0ms' }}>
-            Home / Contact
-          </p>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h1 className={`${bodoni.className} text-5xl md:text-6xl text-white tracking-tight transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '500ms' : '0ms' }}>
-            Contact Us
-          </h1>
+        {/* 文字内容层，绝对定位覆盖在图片上，垂直居中 */}
+        <div className="absolute inset-0 z-10 flex items-center">
+          <div className={`max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 w-full transition-all duration-[1200ms] ease-out ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <p className={`text-xs font-bold uppercase tracking-widest mb-4 text-white transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '200ms' : '0ms' }}>
+              Home / Contact
+            </p>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h1 className={`${bodoni.className} text-5xl md:text-6xl text-white tracking-tight transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '500ms' : '0ms' }}>
+              Contact Us
+            </h1>
+          </div>
         </div>
       </div>
 

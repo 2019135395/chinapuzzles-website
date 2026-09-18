@@ -74,12 +74,21 @@ const CustomGroupProgramPage = () => {
 
       {/* 顶部 Hero 区域 */}
       <div className="relative w-full h-auto">
-        <div ref={imgRef} className={`relative w-full md:h-[520px] h-[360px] overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isImgVisible ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-md'}`}>
-          <img
-            src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f.jpg"
-            alt="Custom Group Program"
-            className="w-full h-full object-cover"
-          />
+        {/* 图片容器：移动端/iPad 使用 -mobile 图片，最高 580px */}
+        <div ref={imgRef} className={`relative w-full h-[360px] md:h-[520px] max-h-[580px] overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isImgVisible ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-md'}`}>
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f.jpg"
+            />
+            {/* 移动端 & iPad（<1024px）：使用原图文件名加 -mobile 的图片 */}
+            <img
+              src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d31e33454fe580001fd505de2793deba36b8191f-mobile.png"
+              alt="Custom Group Program"
+              className="w-full h-full object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
         </div>
 

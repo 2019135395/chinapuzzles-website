@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
 const bodoni = localFont({
   src: [
     { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
@@ -90,15 +88,34 @@ export default function FAQPage() {
 
       {/* 顶部 Hero 区域 */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bottom" style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612.jpg')" }}></div>
-        <div className="absolute inset-0 bg-[#B41615]/80"></div>
+        {/* 图片容器：移动端/iPad 使用 -mobile 图片，最高 580px */}
+        <div className="relative w-full h-[360px] md:h-[520px] max-h-[580px] overflow-hidden">
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612.jpg"
+            />
+            {/* 移动端 & iPad（<1024px）：使用原图文件名加 -mobile 的图片 */}
+            <img
+              src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612-mobile.png"
+              alt="Resources"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+          {/* 红色遮罩层 */}
+          <div className="absolute inset-0 bg-[#B41615]/80"></div>
+        </div>
 
-        <div className={`relative z-10 max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 h-[240px] md:h-[330px] flex flex-col justify-center transition-all duration-[1200ms] ease-out ${
-          isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
-        }`}>
-          <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Home / Resources</p>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h1 className={`${bodoni.className} text-5xl md:text-7xl text-white tracking-tight`}>Resources</h1>
+        {/* 文字内容层，绝对定位覆盖在图片上，垂直居中 */}
+        <div className="absolute inset-0 z-10 flex items-center">
+          <div className={`max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 w-full transition-all duration-[1200ms] ease-out ${
+            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+          }`}>
+            <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Home / Resources</p>
+            {/* ✅ 换成 Bodoni 字体 */}
+            <h1 className={`${bodoni.className} text-5xl md:text-7xl text-white tracking-tight`}>Resources</h1>
+          </div>
         </div>
       </div>
 

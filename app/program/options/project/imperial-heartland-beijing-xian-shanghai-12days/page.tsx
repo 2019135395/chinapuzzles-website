@@ -268,7 +268,22 @@ const OverView = () => {
 
       {/* 顶部 Hero */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className={`w-full h-[300px] sm:h-[400px] md:h-[480px] bg-cover bg-center transition-all duration-1000 ease-out ${isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/1e83c2321022ad6067ea8fe207656bb5aef38700.png')" }}></div>
+        {/* 图片容器：移动端/iPad 使用 -mobile 图片，最高 580px */}
+        <div className={`relative w-full h-[360px] md:h-[520px] max-h-[580px] overflow-hidden transition-all duration-1000 ease-out ${isHeroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/1e83c2321022ad6067ea8fe207656bb5aef38700.png"
+            />
+            {/* 移动端 & iPad（<1024px）：使用原图文件名加 -mobile 的图片 */}
+            <img
+              src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/1e83c2321022ad6067ea8fe207656bb5aef38700-mobile.png"
+              alt="The Innovator's Journey to China"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
         <div className={`absolute left-0 bottom-0 w-full transition-all duration-1000 ease-out delay-300 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-16 w-full">
