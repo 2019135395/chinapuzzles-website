@@ -23,33 +23,33 @@ const advantages = [
     title: "From Impression to\nUnderstanding",
     description: "Cultural context that makes each visit meaningful.",
     longDesc: "China's development is powered by its people and built for its people. From everyday street life to national milestones, we bring you closer to the real China — so impression becomes understanding.",
-    image: "/images/99089089089089089089.png"
+    image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/99089089089089089089.png"
   },
   {
     title: "From Visits to\nExploration",
     description: "Active dialogues that turn observation into insight.",
     longDesc: "Move past surface tours. Talk with enterprise leaders, decode industry logic, and surface real opportunities — turning visits into exploration.",
-    image: "/images/5052059ed23400278f95d9b751bbafeebace37d6.jpg"
+    image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/5052059ed23400278f95d9b751bbafeebace37d6.jpg"
   },
   {
     title: "From Metropolis to\nAuthentic Local Experience",
     description: "Purposeful city encounters and local perspectives.",
     longDesc: "Move past the stereotypical image of a “superpower”. Explore thriving smaller-scale cities and experience authentic Chinese life first-hand.",
-    image: "/images/1eb2f84ab6fe161e5617070e196715ba24b18feb.jpg"
+    image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/1eb2f84ab6fe161e5617070e196715ba24b18feb.jpg"
   },
   {
     title: "Fully-Inclusive & \nCustomizable",
     description: "Formats shaped for cohorts, institutions and objectives.",
     longDesc: "One all-inclusive package, built around your goals. University cohorts and professional groups — each gets a program tailored to its objectives.",
-    image: "/images/909089898989089089.png"
+    image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/909089898989089089.png"
   }
 ];
 
 // ✅ programOptions：前两项带 query（跳转 Program Options 并按筛选），第三项带 href（跳转 Custom Group Program 页）
 const programOptions = [
-  { id: "01", title: "Short-term Explorer", query: "Short-term", duration: "5-7 Days", desc: "Travel small, explore deep. Boutique tours of one region.", image: "/images/bb4536e408b97f8c4aed9b375dd87a2c49267153.png" },
-  { id: "02", title: "Full Immersion Program", query: "Full-Immersion", duration: "10-14 Days", desc: "Multi-city immersion through company visits, dialogues and cultural experiences.", image: "/images/3930311c521a207f946cd10b916998e5ba038ac6.jpg" },
-  { id: "03", title: "Custom University / Institutional Program", href: "/program/customgroupprogram", duration: "Tailor-made", desc: "Bespoke modules shaped around your institution and cohort.", image: "/images/655b834e69ce97579c5d54b95c92fd4bf0be2d80.jpg" },
+  { id: "01", title: "Short-term Explorer", query: "Short-term", duration: "5-7 Days", desc: "Travel small, explore deep. Boutique tours of one region.", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/bb4536e408b97f8c4aed9b375dd87a2c49267153.png" },
+  { id: "02", title: "Full Immersion Program", query: "Full-Immersion", duration: "10-14 Days", desc: "Multi-city immersion through company visits, dialogues and cultural experiences.", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/3930311c521a207f946cd10b916998e5ba038ac6.jpg" },
+  { id: "03", title: "Custom University / Institutional Program", href: "/program/customgroupprogram", duration: "Tailor-made", desc: "Bespoke modules shaped around your institution and cohort.", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/655b834e69ce97579c5d54b95c92fd4bf0be2d80.jpg" },
 ];
 
 const Highlights = () => {
@@ -142,7 +142,7 @@ const Highlights = () => {
 
           {/* 左侧图片 */}
           <div className={`relative w-full lg:w-1/2 h-[300px] lg:h-full shrink-0 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-16 blur-md'}`}>
-            <img src="/images/5933318cfea28dadecb6d7311b101f43e37746cd.jpg" alt="Why Choose China Puzzles" className="absolute inset-0 w-full h-full object-cover" />
+            <img src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/5933318cfea28dadecb6d7311b101f43e37746cd.jpg" alt="Why Choose China Puzzles" className="absolute inset-0 w-full h-full object-cover" />
           </div>
 
           {/* 右侧文字区域 */}

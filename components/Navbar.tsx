@@ -95,7 +95,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link href="/" className="flex z-40 items-center flex-shrink-0">
               <img
-                src="/images/logo.png"
+                src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/logo.png"
                 alt="ChinaPuzzles"
                 className="h-8 w-auto max-w-[35vw] md:h-[45px] md:max-w-[220px] object-contain"
               />

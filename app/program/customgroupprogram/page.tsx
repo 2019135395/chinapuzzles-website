@@ -141,7 +141,7 @@ const CustomGroupProgramPage = () => {
         <div ref={ctaRef} className={`relative w-full max-w-[1264px] mx-auto mb-28 md:mb-36 transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isCtaVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="bg-[#B41615] p-10 md:p-16 relative overflow-hidden">
             {/* 背景纹理遮罩 */}
-            <div className="absolute inset-0 bg-[url('/images/7694077456657449565a9284a728e22d6b5e3090.png')] bg-cover bg-center opacity-20 mix-blend-multiply pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/7694077456657449565a9284a728e22d6b5e3090.png')] bg-cover bg-center opacity-20 mix-blend-multiply pointer-events-none"></div>
 
             <div className="relative text-white">
               {/* ✅ 换成 Libre Bodoni 字体 */}

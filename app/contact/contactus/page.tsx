@@ -268,12 +268,12 @@ const InquiryForm = () => {
 
               <div className={`flex items-center justify-around gap-8 transition-all duration-1000 ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isContentVisible ? '200ms' : '0ms' }}>
                 <div className="text-center">
-                  <img src="/images/d291e3a6d51c9d085bb3d9202f805efb138990fd.png" alt="WeChat QR" className="w-32 h-32 bg-white p-2 shadow-md mx-auto mb-3" />
+                  <img src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/d291e3a6d51c9d085bb3d9202f805efb138990fd.png" alt="WeChat QR" className="w-32 h-32 bg-white p-2 shadow-md mx-auto mb-3" />
                   <p className="text-sm font-semibold text-neutral-900">Instagram</p>
                   <p className="text-xs text-neutral-500">Scan to follow us</p>
                 </div>
                 <div className="text-center">
-                  <img src="/images/bb3cd0824713439c8885baa37ee077d07224f5d5.png" alt="WhatsApp QR" className="w-32 h-32 bg-white p-2 shadow-md mx-auto mb-3" />
+                  <img src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/bb3cd0824713439c8885baa37ee077d07224f5d5.png" alt="WhatsApp QR" className="w-32 h-32 bg-white p-2 shadow-md mx-auto mb-3" />
                   <p className="text-sm font-semibold text-neutral-900">WhatsApp</p>
                   <p className="text-xs text-neutral-500">Scan to chat</p>
                 </div>

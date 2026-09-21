@@ -66,10 +66,10 @@ const OverView = () => {
   ];
 
   const dimensions = [
-    { iconBg: "/images/your-icon-one.png", title: "Practical insight", desc: "See China's business landscape through direct company access." },
-    { iconBg: "/images/your-icon-two.png", title: "Cultural fluency", desc: "Connect historical context with contemporary daily life." },
-    { iconBg: "/images/your-icon-sreen.png", title: "Peer exchange", desc: "Build perspective through structured group reflection." },
-    { iconBg: "/images/your-icon-four.png", title: "Local confidence", desc: "Move through unfamiliar settings with informed curiosity." }
+    { iconBg: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/your-icon-one.png", title: "Practical insight", desc: "See China's business landscape through direct company access." },
+    { iconBg: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/your-icon-two.png", title: "Cultural fluency", desc: "Connect historical context with contemporary daily life." },
+    { iconBg: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/your-icon-sreen.png", title: "Peer exchange", desc: "Build perspective through structured group reflection." },
+    { iconBg: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/your-icon-four.png", title: "Local confidence", desc: "Move through unfamiliar settings with informed curiosity." }
   ];
 
   const includedList = ["Inter-city transport", "Accommodation", "Most of the meals", "Scheduled cultural activities", "Company visits", "Guest speaker sessions", "Official welcome and farewell event"];
