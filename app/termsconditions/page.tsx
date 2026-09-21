@@ -4,15 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 const TermsConditionsPage = () => {
@@ -24,7 +24,7 @@ const TermsConditionsPage = () => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Terms & Conditions-ChinaPuzzles";
+    document.title = "Terms & Conditions | China Puzzles";
   }, []);
 
 
@@ -91,8 +91,8 @@ const TermsConditionsPage = () => {
       }`}>
         <div className="max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 h-[330px] flex flex-col justify-center">
           <p className="text-xs font-bold uppercase tracking-widest mb-4">Home / Terms and Conditions</p>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h1 className={`${bodoni.className} text-4xl md:text-6xl tracking-tight`}>Terms & Conditions</h1>
+          {/* ✅ 换成 Libre Bodoni 字体 */}
+          <h1 className={`${libreBodoni.className} text-4xl md:text-6xl tracking-tight`}>Terms & Conditions</h1>
         </div>
       </div>
 
@@ -121,8 +121,8 @@ const TermsConditionsPage = () => {
                 }`}
                 style={{ transitionDelay: isContentVisible ? `${200 + index * 200}ms` : '0ms' }}
               >
-                {/* ✅ 标题换成 Bodoni 字体，Hover 变红 */}
-                <h2 className={`${bodoni.className} text-3xl md:text-5xl text-neutral-900 mb-6 transition-colors duration-300 group-hover:text-[#B41615]`}>
+                {/* ✅ 标题换成 Libre Bodoni 字体，Hover 变红 */}
+                <h2 className={`${libreBodoni.className} text-3xl md:text-5xl text-neutral-900 mb-6 transition-colors duration-300 group-hover:text-[#B41615]`}>
                   {item.title}
                 </h2>
 

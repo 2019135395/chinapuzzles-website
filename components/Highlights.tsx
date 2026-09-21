@@ -3,19 +3,20 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import localFont from 'next/font/local';
+import Link from 'next/link';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
-const philosophyText = "China is a global economic powerhouse where ancient heritage meets fast-paced innovation — and no article or headline can substitute for being there. China Puzzles connects you with an authentic, first-hand China experience. Our programs blend high-tech industry visits, hands-on business engagement and immersive cultural travel. We help global visitors, business professionals and university students see how ancient traditions intersect with cutting-edge development — on the ground, in real time.";
+const philosophyText = "China is a global economic powerhouse where ancient heritage meets fast-paced innovation — and no article or headline can substitute for being there. China Puzzles connects you with an authentic, first-hand China experience. blend high-tech industry visits, hands-on business engagement and immersive cultural travel. We help global visitors, business professionals and university students see how ancient traditions intersect with cutting-edge development — on the ground, in real time.";
 
 const advantages = [
   {
@@ -37,17 +38,18 @@ const advantages = [
     image: "/images/1eb2f84ab6fe161e5617070e196715ba24b18feb.jpg"
   },
   {
-    title: "Fully-inclusive & \nCustomizable",
+    title: "Fully-Inclusive & \nCustomizable",
     description: "Formats shaped for cohorts, institutions and objectives.",
     longDesc: "One all-inclusive package, built around your goals. University cohorts and professional groups — each gets a program tailored to its objectives.",
     image: "/images/909089898989089089.png"
   }
 ];
 
+// ✅ programOptions：前两项带 query（跳转 Program Options 并按筛选），第三项带 href（跳转 Custom Group Program 页）
 const programOptions = [
-  { id: "01", title: "Short-term Explorer", duration: "5-7 Days", desc: "Travel small, explore deep. Boutique tours of one region.", image: "/images/bb4536e408b97f8c4aed9b375dd87a2c49267153.png" },
-  { id: "02", title: "Custom University / Institutional Program", duration: "Tailor-made", desc: "Bespoke modules shaped around your institution and cohort.", image: "/images/655b834e69ce97579c5d54b95c92fd4bf0be2d80.jpg" },
-  { id: "03", title: "Full Immersion Program", duration: "10-14 Days", desc: "Multi-city immersion through company visits, dialogues and cultural experiences.", image: "/images/3930311c521a207f946cd10b916998e5ba038ac6.jpg" },
+  { id: "01", title: "Short-term Explorer", query: "Short-term", duration: "5-7 Days", desc: "Travel small, explore deep. Boutique tours of one region.", image: "/images/bb4536e408b97f8c4aed9b375dd87a2c49267153.png" },
+  { id: "02", title: "Full Immersion Program", query: "Full-Immersion", duration: "10-14 Days", desc: "Multi-city immersion through company visits, dialogues and cultural experiences.", image: "/images/3930311c521a207f946cd10b916998e5ba038ac6.jpg" },
+  { id: "03", title: "Custom University / Institutional Program", href: "/program/customgroupprogram", duration: "Tailor-made", desc: "Bespoke modules shaped around your institution and cohort.", image: "/images/655b834e69ce97579c5d54b95c92fd4bf0be2d80.jpg" },
 ];
 
 const Highlights = () => {
@@ -128,9 +130,9 @@ const Highlights = () => {
         {/* 标题 */}
         <div className={`mb-8 text-center transition-all duration-1000 ease-out ${isWhyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="group">
-            {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
-            <h2 className={`${bodoni.className} text-[30px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>
-              Why Choose China Puzzles
+            {/* ✅ 使用 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-[30px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>
+              Why China Puzzles
             </h2>
             <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-12 lg:w-0 lg:group-hover:w-[240px]"></div>
           </div>
@@ -162,7 +164,7 @@ const Highlights = () => {
                   }`}
                   style={{ transitionDelay: isWhyChooseVisible ? '600ms' : '0ms' }}
                 >
-                  Our program combines high-tech industry visits, hands-on business opportunities, and immersive cultural travel.
+                  combines high-tech industry visits, hands-on business opportunities, and immersive cultural travel.
                 </p>
 
                 <p
@@ -171,7 +173,7 @@ const Highlights = () => {
                   }`}
                   style={{ transitionDelay: isWhyChooseVisible ? '900ms' : '0ms' }}
                 >
-                  We aim to help global visitors, business professionals and university students witness how ancient traditions intersect with cutting-edge development.
+                  global visitors, business professionals and university students witness how ancient traditions intersect with cutting-edge development.
                 </p>
               </div>
             </div>
@@ -187,8 +189,8 @@ const Highlights = () => {
               {/* 标题 */}
               <div className={`mb-8 text-center transition-all duration-1000 ease-out ${isProgramOptionsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="group">
-                  {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
-                  <h2 className={`${bodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>
+                  {/* ✅ 使用 Libre Bodoni 字体 */}
+                  <h2 className={`${libreBodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>
                     Program Options
                   </h2>
                   <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-12 lg:w-0 lg:group-hover:w-[240px]"></div>
@@ -203,16 +205,19 @@ const Highlights = () => {
                 <div className="flex transition-transform duration-[600ms] ease-out" style={{ transform: `translateX(-${currentIndex * (100 / visibleCount)}%)` }}>
                   {programOptions.map((option, index) => (
                     <div key={index} className="shrink-0 px-3" style={{ width: `${100 / visibleCount}%` }}>
-                      <div className="group h-full border border-neutral-200 bg-white flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-[#B41615]">
-                        <div className="overflow-hidden w-full">
-                          <img src={option.image} alt={option.title} className="aspect-[16/9] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                      {/* ✅ 有 href 用 href，否则用默认的 ?program= 参数 */}
+                      <Link href={option.href || `/program/options?program=${option.query}`} className="block h-full">
+                        <div className="group h-full border border-neutral-200 bg-white flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-[#B41615]">
+                          <div className="overflow-hidden w-full">
+                            <img src={option.image} alt={option.title} className="aspect-[16/9] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                          </div>
+                          <div className="flex flex-col flex-1 p-6 md:p-8 text-center">
+                            <h3 className="font-serif text-xl sm:text-2xl text-neutral-900 mb-3 group-hover:text-[#B41615] transition-colors duration-300">{option.title}</h3>
+                            <p className="text-[#B41615] font-medium mb-3">{option.duration}</p>
+                            <p className="text-neutral-600 text-sm leading-relaxed">{option.desc}</p>
+                          </div>
                         </div>
-                        <div className="flex flex-col flex-1 p-6 md:p-8 text-center">
-                          <h3 className="font-serif text-xl sm:text-2xl text-neutral-900 mb-3 group-hover:text-[#B41615] transition-colors duration-300">{option.title}</h3>
-                          <p className="text-[#B41615] font-medium mb-3">{option.duration}</p>
-                          <p className="text-neutral-600 text-sm leading-relaxed">{option.desc}</p>
-                        </div>
-                      </div>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -253,8 +258,8 @@ const Highlights = () => {
             {/* 标题 */}
             <div className="mb-6">
               <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-3">WHY CHINA PUZZLES</p>
-              {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
-              <h2 className={`${bodoni.className} text-[42px] text-neutral-900 tracking-tight mb-3`}>
+              {/* ✅ 使用 Libre Bodoni 字体 */}
+              <h2 className={`${libreBodoni.className} text-[42px] text-neutral-900 tracking-tight mb-3`}>
                 Unfold a real picture of China.
               </h2>
             </div>

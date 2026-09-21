@@ -4,15 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 const ProgramOptionsPage = () => {
@@ -35,7 +35,27 @@ const ProgramOptionsPage = () => {
   const filterRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Program Options-ChinaPuzzles";
+    document.title = "Program Options | China Puzzles";
+  }, []);
+
+  // ✅ 从 URL 读取 ?program=xxx 参数并设置筛选
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const params = new URLSearchParams(window.location.search);
+    // 兼容 ?program=Short-term 和 ?type=short-term 两种写法
+    const program = params.get('program') || params.get('type');
+    if (!program) return;
+
+    const filtersList = ['All Itineraries', 'Short-term', 'Full Immersion'];
+    // 规范化：小写 + 把 - 或 _ 换成空格，方便匹配
+    const normalize = (s) => s.toLowerCase().replace(/[-_]/g, ' ').trim();
+    const target = normalize(program);
+
+    const matched = filtersList.find(f => normalize(f) === target);
+    if (matched) {
+      setSelectedFilter(matched);
+    }
   }, []);
 
   useEffect(() => {
@@ -59,22 +79,34 @@ const ProgramOptionsPage = () => {
   }, []);
 
   const programs = [
-     { id: "01", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "10 Days", image: "/images/0090909098098090090.png", slug: "north-south-axis-beijing-chengdu-shenzhen-10days" },
-    { id: "02", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "10 Days", image: "/images/90909090909090909.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-10days" },
-    { id: "03", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "12 Days", image: "/images/0bd08913b0e64fdab14201e4e5dd1da7a8fd7a67.png", slug: "north-south-axis-beijing-chengdu-shenzhen-12days" },
-    { id: "04", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "12 Days", image: "/images/546334b296c8d0375d8e5966832dd80e01173f27.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-12days" },
-    { id: "05", title: "The Imperial Heartland: Ancient Capitals from Xi'an to Luoyang", cities: "Xi'an · Luoyang", days: "7 Days", image: "/images/db745919be579a259a71f73fb3d6a50c8674c3dc.png", slug: "imperial-heartland-xian-luoyang-7days" },
-    { id: "06", title: "The Yunnan Circuit: Stone Forests, Erhai Lake, and Old Towns", cities: "Kunming · Dali · Lijiang", days: "7 Days", image: "/images/09090909090909909090.png", slug: "yunnan-circuit-kunming-dali-lijiang-7days" },
-    { id: "07", title: "From Karst Paradise to the Pearl River: Nature and the Lingnan Metropolis", cities: "Guilin · Yangshuo · Guangzhou", days: "7 Days", image: "/images/943ba4c6b89235022017b697f4cc44eef06413af.jpg", slug: "karst-paradise-to-pearl-river-guilin-yangshuo-guangzhou-7days" },
-     { id: "08", title: "The Innovator's Journey to China", cities: "Beijing · Xi'an · Shanghai", days: "12 Days", image: "/images/1a94c84e495035067d57c1a78cf7292d23896525.png", slug: "imperial-heartland-beijing-xian-shanghai-12days" }
+     { id: "01", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "10 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/0090909098098090090.png", slug: "north-south-axis-beijing-chengdu-shenzhen-10days" },
+    { id: "02", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "10 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/90909090909090909.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-10days" },
+    { id: "03", title: "The North-South Axis: Empire, Pandas, and the Silicon Coast", cities: "Beijing · Chengdu · Shenzhen", days: "12 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/0bd08913b0e64fdab14201e4e5dd1da7a8fd7a67.png", slug: "north-south-axis-beijing-chengdu-shenzhen-12days" },
+    { id: "04", title: "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis", cities: "Beijing · Chengdu · Shanghai", days: "12 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/546334b296c8d0375d8e5966832dd80e01173f27.png", slug: "capital-to-coast-journey-beijing-chengdu-shanghai-12days" },
+    { id: "05", title: "The Imperial Heartland: Ancient Capitals from Xi'an to Luoyang", cities: "Xi'an · Luoyang", days: "7 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/db745919be579a259a71f73fb3d6a50c8674c3dc.png", slug: "imperial-heartland-xian-luoyang-7days" },
+    { id: "06", title: "The Yunnan Circuit: Stone Forests, Erhai Lake, and Old Towns", cities: "Kunming · Dali · Lijiang", days: "7 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/09090909090909909090.png", slug: "yunnan-circuit-kunming-dali-lijiang-7days" },
+    { id: "07", title: "From Karst Paradise to the Pearl River: Nature and the Lingnan Metropolis", cities: "Guilin · Yangshuo · Guangzhou", days: "7 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/943ba4c6b89235022017b697f4cc44eef06413af.jpg", slug: "karst-paradise-to-pearl-river-guilin-yangshuo-guangzhou-7days" },
+     { id: "08", title: "The Innovator's Journey to China", cities: "Beijing · Xi'an · Shanghai", days: "12 Days", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/1a94c84e495035067d57c1a78cf7292d23896525.png", slug: "imperial-heartland-beijing-xian-shanghai-12days" }
   ];
 
-  const filteredPrograms = programs.filter(item => {
-    if (selectedFilter === 'All Itineraries') return true;
-    return item.days.includes(selectedFilter);
-  });
+  const filters = ['All Itineraries', 'Short-term', 'Full Immersion'];
 
-  const filters = ['All Itineraries', '7 Days', '10 Days', '12 Days'];
+  const filterMap = {
+    'All Itineraries': () => true,
+    'Short-term': (item) => {
+      const n = parseInt(item.days);
+      return n >= 5 && n <= 7;
+    },
+    'Full Immersion': (item) => {
+      const n = parseInt(item.days);
+      return n >= 10 && n <= 14;
+    },
+  };
+
+  const filteredPrograms = programs.filter(item => {
+    const fn = filterMap[selectedFilter];
+    return fn ? fn(item) : true;
+  });
 
   const toggleLike = (id) => {
     setLikedItems(prev => ({
@@ -88,12 +120,21 @@ const ProgramOptionsPage = () => {
 
       {/* 顶部 Hero 区域 */}
       <div className="relative w-full h-auto">
-        <div ref={imgRef} className={`relative w-full md:h-[520px] h-[360px] overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isImgVisible ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-md'}`}>
-          <img
-            src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/431af35512db9b7c47cf6818873b52dcd7e78b6c.png"
-            alt="Program Options"
-            className="w-full h-full object-cover"
-          />
+        {/* 图片容器：移动端/iPad 使用 -mobile 图片，最高 580px */}
+        <div ref={imgRef} className={`relative w-full h-[360px] md:h-[520px] max-h-[580px] overflow-hidden transition-all duration-[1500ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isImgVisible ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-md'}`}>
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/431af35512db9b7c47cf6818873b52dcd7e78b6c.png"
+            />
+            {/* 移动端 & iPad（<1024px）：使用原图文件名加 -mobile 的图片 */}
+            <img
+              src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/431af35512db9b7c47cf6818873b52dcd7e78b6c-mobile.png"
+              alt="Program Options"
+              className="w-full h-full object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
         </div>
 
@@ -102,8 +143,8 @@ const ProgramOptionsPage = () => {
           <div className="max-w-[1200px] mx-auto h-full relative px-6 lg:px-8">
             <div className="absolute left-0 bottom-24 w-full pointer-events-auto">
               <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Options</p>
-              {/* ✅ 换成 Bodoni 字体 */}
-              <h1 className={`${bodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>
+              {/* ✅ 换成 Libre Bodoni 字体 */}
+              <h1 className={`${libreBodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>
                 Program Options
               </h1>
               <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
@@ -115,8 +156,8 @@ const ProgramOptionsPage = () => {
         <div ref={boxRefMobile} className={`md:hidden absolute inset-0 z-10 flex items-end p-8 transition-all duration-[1200ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] delay-500 ${isBoxVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="w-full">
             <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Options</p>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h1 className={`${bodoni.className} text-4xl text-white tracking-tight leading-tight`}>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h1 className={`${libreBodoni.className} text-4xl text-white tracking-tight leading-tight`}>
               Program Options
             </h1>
             <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
@@ -128,12 +169,12 @@ const ProgramOptionsPage = () => {
       <main className="flex-1 w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
 
         <div ref={contentRef} className={`mb-14 transition-all duration-[900ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isContentVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h2 className={`${bodoni.className} text-[32px] sm:text-[38px] text-neutral-900 mb-6 text-left`}>
+          {/* ✅ 换成 Libre Bodoni 字体 */}
+          <h2 className={`${libreBodoni.className} text-[32px] sm:text-[38px] text-neutral-900 mb-6 text-left`}>
             Multiple itineraries. One real China.
           </h2>
           <p className="text-neutral-600 text-base md:text-lg leading-relaxed max-w-4xl text-left">
-            Explore multi-city and regional programs that combine, cultural immersion and local perspective cultural immersion company visit. Select a route to view its full schedule.
+           Explore multi-city and regional programs that combine cultural immersion, local perspectives, and company visits.
           </p>
         </div>
 
@@ -206,8 +247,8 @@ const ProgramOptionsPage = () => {
                 {/* 内容层 */}
                 <div className="absolute bottom-0 left-0 right-0 z-10 p-6 text-white min-w-0">
 
-                  {/* ✅ 换成 Bodoni 字体 */}
-                  <h3 className={`${bodoni.className} text-[25px] text-white leading-snug mb-6 break-words text-left`}>
+                  {/* ✅ 换成 Libre Bodoni 字体 */}
+                  <h3 className={`${libreBodoni.className} text-[25px] text-white leading-snug mb-6 break-words text-left`}>
                     {item.title}
                   </h3>
 

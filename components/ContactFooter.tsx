@@ -5,15 +5,15 @@ import Link from 'next/link';
 import IpLocation from '@/components/IpLocation';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 interface FormErrors {
@@ -111,8 +111,8 @@ const ContactFooter = () => {
                   Get in touch
                 </p>
 
-                {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
-                <h2 className={`${bodoni.className} text-[42px] leading-[1.15] tracking-tight text-white mb-5`}>
+                {/* ✅ 使用 Libre Bodoni 字体 */}
+                <h2 className={`${libreBodoni.className} text-[42px] leading-[1.15] tracking-tight text-white mb-5`}>
                   Unlock your China insight.
                 </h2>
 
@@ -139,13 +139,13 @@ const ContactFooter = () => {
 
             {/* 右侧表单 */}
             <div className="flex flex-col">
-              {/* ✅ 换成 Bodoni 字体，字号保持不变 */}
-              <h3 className={`${bodoni.className} text-[42px] leading-[1.15] mb-4`}>
+              {/* ✅ 使用 Libre Bodoni 字体 */}
+              <h3 className={`${libreBodoni.className} text-[42px] leading-[1.15] mb-4`}>
                 Send an inquiry
               </h3>
 
               <p className="text-red-100/80 text-xs md:text-sm leading-relaxed mb-5">
-                Let us know your interest Program
+               Let us know your program of interest
                 <br className="hidden md:block" />
                 <span className="text-red-100/60 text-[11px]">(Custom Program will be made upon request)</span>
               </p>
@@ -190,7 +190,7 @@ const ContactFooter = () => {
                   </div>
                   <div>
                     <label className="block text-xs mb-1.5 text-red-100/90">
-                      Your E-mail <span className="text-red-200">*</span>
+                      Your Email <span className="text-red-200">*</span>
                     </label>
                     <input
                       type="email"

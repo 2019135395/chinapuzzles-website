@@ -4,15 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 // === 自定义日期选择器（图标大小保持，去除加粗，修复层级遮挡） ===
@@ -43,6 +43,10 @@ const CustomDatePicker = ({ value, onChange }) => {
     onChange(selectedDate);
     setIsOpen(false);
   };
+
+   useEffect(() => {
+    document.title = "Contact Us | China Puzzles";
+  }, []);
 
   const isSelected = (day) => {
     if (!value) return false;
@@ -86,13 +90,13 @@ const CustomDatePicker = ({ value, onChange }) => {
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2 md:gap-4">
               <div className="relative">
-                <select value={month} onChange={handleMonthChange} className="bg-transparent font-serif text-lg md:text-2xl text-neutral-900 outline-none cursor-pointer appearance-none pr-6 hover:text-[#B41615] transition-colors">
+                <select value={month} onChange={handleMonthChange} className={`bg-transparent ${libreBodoni.className} text-lg md:text-2xl text-neutral-900 outline-none cursor-pointer appearance-none pr-6 hover:text-[#B41615] transition-colors`}>
                   {months.map((m, i) => <option key={m} value={i}>{m}</option>)}
                 </select>
                 <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2"><ChevronDownIcon /></div>
               </div>
               <div className="relative">
-                <select value={year} onChange={handleYearChange} className="bg-transparent font-serif text-lg md:text-2xl text-neutral-900 outline-none cursor-pointer appearance-none pr-6 hover:text-[#B41615] transition-colors">
+                <select value={year} onChange={handleYearChange} className={`bg-transparent ${libreBodoni.className} text-lg md:text-2xl text-neutral-900 outline-none cursor-pointer appearance-none pr-6 hover:text-[#B41615] transition-colors`}>
                   {years.map((y) => <option key={y} value={y}>{y}</option>)}
                 </select>
                 <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2"><ChevronDownIcon /></div>
@@ -239,8 +243,8 @@ const InquiryForm = () => {
           <p className={`text-xs font-bold uppercase tracking-widest mb-4 text-white transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '200ms' : '0ms' }}>
             Home / Contact
           </p>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h1 className={`${bodoni.className} text-5xl md:text-6xl text-white tracking-tight transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '500ms' : '0ms' }}>
+          {/* ✅ 换成 Libre Bodoni 字体 */}
+          <h1 className={`${libreBodoni.className} text-5xl md:text-6xl text-white tracking-tight transition-all duration-[1000ms] ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isHeroVisible ? '500ms' : '0ms' }}>
             Contact Us
           </h1>
         </div>
@@ -255,8 +259,8 @@ const InquiryForm = () => {
 
               <div className={`flex flex-col justify-center transition-all duration-1000 ${isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isContentVisible ? '0ms' : '0ms' }}>
                 <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-4">STAY CONNECTED</p>
-                {/* ✅ 换成 Bodoni 字体 */}
-                <h2 className={`${bodoni.className} text-3xl md:text-4xl text-neutral-900 mb-4`}>Connect with our team</h2>
+                {/* ✅ 换成 Libre Bodoni 字体 */}
+                <h2 className={`${libreBodoni.className} text-3xl md:text-4xl text-neutral-900 mb-4`}>Connect with our team</h2>
                 <p className="text-neutral-600 leading-relaxed">
                   Scan  Instagram or WhatsApp for a quick reply. Follow our updates and keep in touch.
                 </p>
@@ -310,8 +314,8 @@ const InquiryForm = () => {
         <div ref={formRef} className={`transition-all duration-1000 ease-out ${isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
 
           <div className={`mb-12 transition-all duration-1000 ${isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isFormVisible ? '0ms' : '0ms' }}>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h2 className={`${bodoni.className} text-4xl md:text-5xl text-neutral-900 mb-4`}>Let's get in touch</h2>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-4xl md:text-5xl text-neutral-900 mb-4`}>Let's get in touch</h2>
             <p className="text-neutral-600 leading-relaxed">
               Tell us about your preferred program, group profile and expected travel time. We will reply within 2-3 business days.
             </p>

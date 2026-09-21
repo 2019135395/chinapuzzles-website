@@ -4,29 +4,46 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 const faqs = [
-  { q: "Do I need a visa to tour to China?", a: "Inter-city transport, accommodation, meals, scheduled cultural activities and company visits are included. International airfare, visa fees and personal expenses are excluded." },
+  {
+    q: "Do I need a visa to travel to China?",
+    a: (
+      <>
+        At present, foreigners from 55 countries can enjoy the{" "}
+        <a
+          href="https://chinaexplorertour.com/visa-free-specials/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="text-[#B41615] underline hover:text-[#8a0f0f] transition-colors"
+        >
+          240-hour visa-free transit policy
+        </a>
+        , covering 60 ports in 24 cities in China, and you can find out whether you need to sign the visa through the government&rsquo;s real-time announcements. The above information is for reference only, the specific policy is subject to the announcement of the Chinese Embassy and Consulates in the local community.
+      </>
+    )
+  },
   { q: "What to see for your first tour to China?", a: "Explore iconic historical landmarks, modern developments and local neighborhoods. The itinerary is carefully curated to provide a balanced experience." },
-  { q: "What are the highlights of the Seasonal featured Trips?", a: "Seasonal trips feature special events, festivals, and weather-appropriate destinations to maximize your experience." },
+  { q: "What are the highlights of the Seasonal Featured Trips?", a: "Seasonal trips feature special events, festivals, and weather-appropriate destinations to maximize your experience." },
   { q: "What kind of food can I try during the tour in China?", a: "You will have the opportunity to try a wide variety of regional Chinese cuisines, from classic Peking duck to fresh local delicacies." },
   { q: "What is the local currency, and can I use my credit card?", a: "The local currency is RMB (Yuan). Credit cards are widely accepted in major cities, but carrying some cash for small vendors is recommended." },
-  { q: "Can I access Facebook or Google Map in China?", a: "Access to these services is restricted in China. We recommend downloading a VPN before arrival and using local alternatives for maps and messaging." },
+  { q: "Can I access Facebook or Google Maps in China?", a: "Access to these services is restricted in China. We recommend downloading a VPN app before arrival before arrival and using local alternatives for maps and messaging." },
   { q: "Will I have access to Wi-Fi?", a: "Yes, free Wi-Fi is available in all hotels, most restaurants, and public areas in major cities." },
   { q: "How can I get a SIM card or eSIM for my trip to China?", a: "You can easily purchase a SIM card at the airport upon arrival or set up an international eSIM before your departure." },
-  { q: "How is participant safety managed?", a: "Safety is our top priority. All itineraries include insurance, vetted transportation, and 24/7 assistance from our team." },
+  { q: "How is participant safety managed?", a: "Safety is our top priority. All itineraries include vetted transportation and 24/7 assistance from our team. Travel insurance is recommended but not included." },
   { q: "How do I receive confirmation details?", a: "After you submit your application and make the initial payment, you will receive a comprehensive confirmation package including your trip schedule." },
-  { q: "China Gort Guide: Working & Living in China", a: "", isLink: true, link: "https://www.chinapuzzles.com" }
+
 ];
 
 export default function FAQPage() {
@@ -41,7 +58,7 @@ export default function FAQPage() {
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    document.title = "FAQs-ChinaPuzzles";
+    document.title = "FAQs | China Puzzles";
   }, []);
 
   useEffect(() => {
@@ -90,15 +107,34 @@ export default function FAQPage() {
 
       {/* 顶部 Hero 区域 */}
       <div ref={heroRef} className="relative w-full overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bottom" style={{ backgroundImage: "url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612.jpg')" }}></div>
-        <div className="absolute inset-0 bg-[#B41615]/80"></div>
+        {/* 图片容器：移动端/iPad 使用 -mobile 图片，最高 580px */}
+        <div className="relative w-full h-[360px] md:h-[520px] max-h-[580px] overflow-hidden">
+          <picture>
+            {/* 桌面端（≥1024px）：使用原图 */}
+            <source
+              media="(min-width: 1024px)"
+              srcSet="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612.jpg"
+            />
+            {/* 移动端 & iPad（<1024px）：使用原图文件名加 -mobile 的图片 */}
+            <img
+              src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/4c952a2db10f014558457ed6621f67d5d6dc3612-mobile.png"
+              alt="Resources"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+          {/* 红色遮罩层 */}
+          <div className="absolute inset-0 bg-[#B41615]/80"></div>
+        </div>
 
-        <div className={`relative z-10 max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 h-[240px] md:h-[330px] flex flex-col justify-center transition-all duration-[1200ms] ease-out ${
-          isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
-        }`}>
-          <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Home / Resources</p>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h1 className={`${bodoni.className} text-5xl md:text-7xl text-white tracking-tight`}>Resources</h1>
+        {/* 文字内容层，绝对定位覆盖在图片上，垂直居中 */}
+        <div className="absolute inset-0 z-10 flex items-center">
+          <div className={`max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 w-full transition-all duration-[1200ms] ease-out ${
+            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+          }`}>
+            <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Home / Resources</p>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h1 className={`${libreBodoni.className} text-5xl md:text-7xl text-white tracking-tight`}>Resources</h1>
+          </div>
         </div>
       </div>
 
@@ -112,12 +148,13 @@ export default function FAQPage() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`} style={{ transitionDelay: isVisible ? '0ms' : '0ms' }}>
             <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none opacity-30">
-               <img src="/images/auoursoioioi.png" alt="Flyer" className="w-full h-full object-cover object-right transform rotate-12 scale-125" />
+               <img src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/auoursoioioi.png" alt="Flyer" className="w-full h-full object-cover object-right transform rotate-12 scale-125" />
             </div>
 
             <div className="relative z-10 h-[250px] flex flex-col md:flex-row justify-between items-start md:items-center p-8 md:p-12 gap-6">
               <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isVisible ? '0ms' : '0ms' }}>
-                <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 mb-3">Program Flyer</h2>
+                {/* ✅ 换成 Libre Bodoni 字体 */}
+                <h2 className={`${libreBodoni.className} text-3xl md:text-4xl text-neutral-900 mb-3`}>Program Brochure</h2>
                 <p className="text-neutral-600 text-sm md:text-base max-w-lg">
                   Download the latest program brochure for itinerary highlights, inclusions and inquiry details.
                 </p>
@@ -131,7 +168,7 @@ export default function FAQPage() {
                 }`}
                 style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
               >
-                Download Flyer ↓
+                Program Brochure ↓
               </a>
             </div>
           </div>
@@ -140,8 +177,8 @@ export default function FAQPage() {
           <div className={`mb-10 transition-all duration-[1000ms] ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`} style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h2 className={`${bodoni.className} text-4xl md:text-5xl text-neutral-900 tracking-tight`}>FAQs</h2>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-4xl md:text-5xl text-neutral-900 tracking-tight`}>FAQs</h2>
           </div>
 
           {/* FAQ 列表 */}
@@ -198,13 +235,13 @@ export default function FAQPage() {
               <div className="flex-1">
                 <div className={`transition-all duration-1000 ease-out ${isBottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isBottomVisible ? '0ms' : '0ms' }}>
                   <p className="text-xs font-bold tracking-widest text-[#B41615] uppercase mb-4">Official Reference</p>
-                  {/* ✅ 换成 Bodoni 字体 */}
-                  <h2 className={`${bodoni.className} text-3xl md:text-4xl text-neutral-900 mb-4`}>A Welcome Guide to China</h2>
+                  {/* ✅ 换成 Libre Bodoni 字体 */}
+                  <h2 className={`${libreBodoni.className} text-3xl md:text-4xl text-neutral-900 mb-4`}>A Welcome Guide to China</h2>
                   <p className="text-neutral-600 text-sm md:text-base mb-8">An official reference for travelling, living and getting settled in China.</p>
                 </div>
 
                 <a
-                  href="#"
+                  href="https://www.nia.gov.cn/English/2025/Guide_en/mobile/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`bg-[#B41615] hover:bg-[#8a0f0f] text-white font-semibold py-3 transition-all duration-1000 ease-out inline-flex items-center justify-center whitespace-nowrap rounded-full w-full max-w-[205px] md:w-[205px] ${
@@ -218,7 +255,7 @@ export default function FAQPage() {
 
               <div className={`w-[140px] flex-shrink-0 transition-all duration-1000 ease-out ${isBottomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: isBottomVisible ? '150ms' : '0ms' }}>
                 <img
-                  src="/images/2d56b5f8225092ced8654603c517820cd3298bee.jpg"
+                  src="https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/2d56b5f8225092ced8654603c517820cd3298bee.jpg"
                   alt="A Welcome Guide to China"
                   className="w-full h-auto object-contain shadow-xl"
                 />

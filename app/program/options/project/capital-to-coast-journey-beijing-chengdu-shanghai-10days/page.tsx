@@ -2,6 +2,23 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import ContactFooter from "@/components/ContactFooterTwo";
+import localFont from 'next/font/local';
+
+
+
+
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
+  src: [
+    { path: '../../../../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../../../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../../../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-libre-bodoni',
+});
+
+ 
 
 // === 单个日程卡片组件 ===
 const ScheduleCard = ({ item, isVisible, delay }) => {
@@ -11,6 +28,10 @@ const ScheduleCard = ({ item, isVisible, delay }) => {
   const visibleImages = images.slice(imgOffset, imgOffset + 3);
   const hasNext = imgOffset + 3 < images.length;
   const hasPrev = imgOffset > 0;
+
+   useEffect(() => {
+    document.title = "The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis (10Day) | China Puzzles";
+  }, []);
 
   return (
     <div
@@ -26,7 +47,8 @@ const ScheduleCard = ({ item, isVisible, delay }) => {
         <div className="inline-block bg-[#B41615] text-white text-sm font-bold px-3 py-1 h-fit rounded-sm">
           {item.label}
         </div>
-        <h3 className="font-serif text-2xl md:text-3xl text-neutral-900">{item.title}</h3>
+        {/* ✅ 换成 Libre Bodoni 字体 */}
+        <h3 className={`${libreBodoni.className} text-2xl md:text-3xl text-neutral-900`}>{item.title}</h3>
       </div>
 
       <div className="relative mb-10">
@@ -278,8 +300,9 @@ const OverView = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
         <div className={`absolute left-0 bottom-0 w-full transition-all duration-1000 ease-out delay-300 ${isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-16">
-            <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Product 02</p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis</h1>
+            <p className="text-xs font-bold tracking-widest text-white/80 uppercase mb-4">Program 02</p>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h1 className={`${libreBodoni.className} text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6`}>The Capital-to-Coast Journey: Heritage, Panda Country, and the Global Metropolis</h1>
             <div className="flex flex-wrap gap-y-2 gap-x-2 text-sm md:text-base font-medium text-white/90 mb-6">
               <span>Beijing</span><span>·</span><span>Chengdu</span><span>·</span><span>Shanghai</span><span>·</span><span>10 Days</span>
             </div>
@@ -291,7 +314,8 @@ const OverView = () => {
       {/* Program Overview */}
       <div ref={overviewRef} className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24 mb-16 sm:mb-20 w-full">
         <div className={`transition-all duration-1000 ease-out ${isOverviewVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <h2 className="font-serif text-[46px] text-neutral-900 tracking-tight mb-6 md:mb-8">Program Overview</h2>
+          {/* ✅ 换成 Libre Bodoni 字体 */}
+          <h2 className={`${libreBodoni.className} text-[46px] text-neutral-900 tracking-tight mb-6 md:mb-8`}>Program Overview</h2>
           <p className="text-sm sm:text-[15px] leading-7 text-neutral-600 max-w-4xl">
             This 10-day program is designed for you to travel from imperial Beijing, through the panda-filled west, to Shanghai's global skyline. Participants will visit leading technology and EV cars firms, cross the Great Wall, taste Sichuan's fiery cuisine, and end on the Bund — with tea ceremonies, opera, and traditional Chinese wellness along the way.
           </p>
@@ -304,7 +328,8 @@ const OverView = () => {
           <div className="w-full max-w-full">
 
             <div className={`mb-8 md:mb-12 transition-all duration-1000 ease-out ${isScheduleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-              <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-neutral-900 tracking-tight mb-4">Schedule</h2>
+              {/* ✅ 换成 Libre Bodoni 字体 */}
+              <h2 className={`${libreBodoni.className} text-3xl sm:text-5xl md:text-6xl text-neutral-900 tracking-tight mb-4`}>Schedule</h2>
               <div className="w-12 h-1 bg-[#B41615] mb-8"></div>
             </div>
 

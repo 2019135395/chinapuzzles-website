@@ -4,15 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 const CustomGroupProgramPage = () => {
@@ -35,7 +35,7 @@ const CustomGroupProgramPage = () => {
   const ctaRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Custom Group Program-ChinaPuzzles";
+    document.title = "Custom Group Program | China Puzzles";
   }, []);
 
   useEffect(() => {
@@ -87,8 +87,8 @@ const CustomGroupProgramPage = () => {
           <div className="max-w-[1200px] mx-auto h-full relative px-6 lg:px-8">
             <div className="absolute left-0 bottom-24 w-full pointer-events-auto">
               <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Our Program / Custom Group Program</p>
-              {/* ✅ 换成 Bodoni 字体 */}
-              <h1 className={`${bodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>Custom Group Program</h1>
+              {/* ✅ 换成 Libre Bodoni 字体 */}
+              <h1 className={`${libreBodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>Custom Group Program</h1>
               <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
             </div>
           </div>
@@ -97,8 +97,8 @@ const CustomGroupProgramPage = () => {
         <div ref={boxRefMobile} className={`md:hidden absolute inset-0 z-10 flex items-end p-8 transition-all duration-[1200ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] delay-500 ${isBoxVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="w-full">
             <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Our Program / Custom Group Program</p>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h1 className={`${bodoni.className} text-4xl text-white tracking-tight leading-tight`}>Custom Group Program</h1>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h1 className={`${libreBodoni.className} text-4xl text-white tracking-tight leading-tight`}>Custom Group Program</h1>
             <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
           </div>
         </div>
@@ -109,12 +109,12 @@ const CustomGroupProgramPage = () => {
 
         {/* 标题和描述 */}
         <div ref={contentRef} className={`mt-28 md:mt-36 mb-28 md:mb-36 transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isContentVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
-          {/* ✅ 换成 Bodoni 字体 */}
-          <h2 className={`${bodoni.className} text-[38px] text-neutral-900 mb-6 text-left`}>
+          {/* ✅ 换成 Libre Bodoni 字体 */}
+          <h2 className={`${libreBodoni.className} text-[38px] text-neutral-900 mb-6 text-left`}>
             Tailored for universities, institutions and professional groups.
           </h2>
           <p className="text-neutral-600 text-base leading-relaxed max-w-4xl text-left">
-            Build a program around your learning goals, group profile and preferred China experience. ChinaPuzzles supports university faculties, student organizations and professional institutions/companies with carefully selected deep-dive sets to ensure interaction.
+            Build a program around your learning goals, group profile and preferred China experience. China Puzzles supports university faculties, student organizations and professional institutions/companies with carefully selected deep-dive sets to ensure interaction.
           </p>
         </div>
 
@@ -126,7 +126,8 @@ const CustomGroupProgramPage = () => {
               className={`group bg-white border-l-8 border-[#B41615] p-10 shadow-md transition-all duration-1000 hover:-translate-y-2 hover:shadow-2xl ${isCardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: isCardsVisible ? `${index * 150}ms` : '0ms' }}
             >
-              <h3 className="font-serif text-3xl text-neutral-900 mb-4 transition-colors duration-300 group-hover:text-[#B41615]">
+              {/* ✅ 换成 Libre Bodoni 字体 */}
+              <h3 className={`${libreBodoni.className} text-3xl text-neutral-900 mb-4 transition-colors duration-300 group-hover:text-[#B41615]`}>
                 {item.title}
               </h3>
               <p className="text-neutral-600 leading-relaxed text-lg">
@@ -143,8 +144,8 @@ const CustomGroupProgramPage = () => {
             <div className="absolute inset-0 bg-[url('/images/7694077456657449565a9284a728e22d6b5e3090.png')] bg-cover bg-center opacity-20 mix-blend-multiply pointer-events-none"></div>
 
             <div className="relative text-white">
-              {/* ✅ 换成 Bodoni 字体 */}
-              <h2 className={`${bodoni.className} text-4xl md:text-5xl mb-6`}>Start a group inquiry</h2>
+              {/* ✅ 换成 Libre Bodoni 字体 */}
+              <h2 className={`${libreBodoni.className} text-4xl md:text-5xl mb-6`}>Start a group inquiry</h2>
 
               <div className={`transition-all duration-1000 ${isCtaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: isCtaVisible ? '200ms' : '0ms' }}>
                 <p className="text-red-100 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">

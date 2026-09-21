@@ -5,15 +5,15 @@ import { useState, useEffect, useRef } from 'react';
 import ContactFooter from '@/components/ContactFooterTwo';
 import localFont from 'next/font/local';
 
-// ✅ 本地 Bodoni 字体（字体放在 app/ 下，此文件在 app/components/ 下时用 ../）
-// 如果编译报错找不到路径，请参考文末的“路径调整”说明
-const bodoni = localFont({
+// ✅ 更换为 Libre Bodoni 字体
+const libreBodoni = localFont({
   src: [
-    { path: '../../../app/fonts/Bodoni-06-Medium.ttf', weight: '500', style: 'normal' },
-    { path: '../../../app/fonts/Bodoni-06-Bold.ttf',   weight: '700', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',   weight: '700', style: 'normal' },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 const OverView = () => {
@@ -35,7 +35,7 @@ const OverView = () => {
   const ctaRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Program Overview-ChinaPuzzles";
+    document.title = "Program Overview | China Puzzles";
   }, []);
 
   useEffect(() => {
@@ -60,9 +60,9 @@ const OverView = () => {
   }, []);
 
   const experiences = [
-    { num: "01", title: "Immerse in Chinese culture", desc: "Step beyond the landmarks. Wander local streets, share everyday meals, and see how ancient traditions live alongside modern life.", image: "/images/190909090901909090.png" },
-    { num: "02", title: "Explore the business landscape", desc: "Visit leading companies and talk with the people behind them, unpacking industry logic and spotting opportunities firsthand.", image: "/images/068b84fe006895bd2c7962aaf9b8f65687b310a9.png" },
-    { num: "03", title: "Build lasting connections", desc: "Meet entrepreneurs, professionals and locals along the way — building relationships that last long after you return home.", image: "/images/baf630e0474ab4160d03f221e2524bfd75e36c48.png" }
+    { num: "01", title: "Immerse in Chinese culture", desc: "Step beyond the landmarks. Wander local streets, share everyday meals, and see how ancient traditions live alongside modern life.", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/190909090901909090.png" },
+    { num: "02", title: "Explore the business landscape", desc: "Visit leading companies and talk with the people behind them, unpacking industry logic and spotting opportunities firsthand.", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/068b84fe006895bd2c7962aaf9b8f65687b310a9.png" },
+    { num: "03", title: "Build lasting connections", desc: "Meet entrepreneurs, professionals and locals along the way — building relationships that last long after you return home.", image: "https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/baf630e0474ab4160d03f221e2524bfd75e36c48.png" }
   ];
 
   const dimensions = [
@@ -72,8 +72,8 @@ const OverView = () => {
     { iconBg: "/images/your-icon-four.png", title: "Local confidence", desc: "Move through unfamiliar settings with informed curiosity." }
   ];
 
-  const includedList = ["Inter-city transport", "Accommodation", "Most of the Meals", "Scheduled cultural activities", "Company visits", "Guest Speaker", "Official welcome and farewell event"];
-  const notIncludedList = ["Airfare home country to China, airport to town transport on arrival and departure", "Personal meals, food, and beverages that are not offered by the program","Insurance, visa, and passport fee","Self-arranged tourist fee","Personal expenses"];
+  const includedList = ["Inter-city transport", "Accommodation", "Most of the meals", "Scheduled cultural activities", "Company visits", "Guest speaker sessions", "Official welcome and farewell event"];
+  const notIncludedList = ["International airfare (home country to China) and airport transfers on arrival and departure", "Personal meals, food, and beverages that are not offered by the program","Insurance, visa, and passport fee","Self-arranged sightseeing activities and associated fees","Personal expenses"];
 
   return (
     <div className="bg-[#FCFAF7] overflow-hidden">
@@ -93,8 +93,8 @@ const OverView = () => {
           <div className="max-w-[1200px] mx-auto h-full relative px-6 lg:px-8">
             <div className="absolute left-0 bottom-24 w-full pointer-events-auto">
               <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Overview</p>
-              {/* ✅ 换成 Bodoni 字体 */}
-              <h1 className={`${bodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>Program Overview</h1>
+              {/* ✅ 换成 Libre Bodoni 字体 */}
+              <h1 className={`${libreBodoni.className} text-5xl lg:text-6xl text-white tracking-tight leading-tight`}>Program Overview</h1>
               <p className="text-sm md:text-base text-white/90 font-light drop-shadow-md mt-6">Deepen your understanding of Chinese culture, explore the business landscape, and build lasting connections.</p>
               <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
             </div>
@@ -104,8 +104,8 @@ const OverView = () => {
         <div ref={boxRefMobile} className={`md:hidden absolute inset-0 z-10 flex items-end p-8 transition-all duration-[1200ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] delay-500 ${isBoxVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="w-full">
             <p className="text-xs font-bold uppercase tracking-widest mb-4 text-white/90">Home / Our Program / Program Overview</p>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h1 className={`${bodoni.className} text-4xl text-white tracking-tight leading-tight`}>Program Overview</h1>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h1 className={`${libreBodoni.className} text-4xl text-white tracking-tight leading-tight`}>Program Overview</h1>
             <p className="text-sm text-white/90 font-light drop-shadow-md mt-6">Deepen your understanding of Chinese culture, explore the business landscape, and build lasting connections.</p>
             <div className="w-16 h-1 bg-[#B41615] mt-6"></div>
           </div>
@@ -116,8 +116,8 @@ const OverView = () => {
       <div ref={overviewRef} className="w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 mt-28 md:mt-30 mb-28 md:mb-36">
         <div className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isOverviewVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="group">
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h2 className={`${bodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>Program Highlight</h2>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center whitespace-normal lg:whitespace-nowrap`}>Program Highlight</h2>
             <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-16 lg:w-0 lg:group-hover:w-[240px]"></div>
           </div>
           <div className="flex flex-col lg:flex-row lg:flex-wrap gap-3">
@@ -157,8 +157,8 @@ const OverView = () => {
       <div ref={scheduleRef} className="w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 mb-28 md:mb-36">
         <div className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isScheduleVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
           <div className="group">
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h2 className={`${bodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center mb-6 whitespace-normal lg:whitespace-nowrap`}>What You Will Gain</h2>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-[32px] lg:text-[42px] text-neutral-900 text-center mb-6 whitespace-normal lg:whitespace-nowrap`}>What You Will Gain</h2>
             <div className="mt-3 w-[80px] h-[3px] bg-[#B41615] mx-auto transition-all duration-1000 mb-16 lg:w-0 lg:group-hover:w-[240px]"></div>
           </div>
 
@@ -201,8 +201,8 @@ const OverView = () => {
         <div className="bg-[#F8F7F4] p-[40px]">
           <div className={`transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isDetailsVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
             <p className="text-sm font-bold tracking-widest text-[#B41615] uppercase mb-3">Program Details</p>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h2 className={`${bodoni.className} text-[32px] md:text-4xl text-neutral-900 tracking-tight`}>What's included. What's not.</h2>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-[32px] md:text-4xl text-neutral-900 tracking-tight`}>What's included. What's not.</h2>
             <div className="w-28 h-1 bg-[#B41615] mt-8 mb-12"></div>
 
             <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 transition-all duration-1000 ${isDetailsVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`} style={{ transitionDelay: isDetailsVisible ? '200ms' : '0ms' }}>
@@ -249,16 +249,16 @@ const OverView = () => {
       {/* 第四个板块 */}
       <div ref={ctaRef} className={`relative w-full max-w-[1264px] mx-auto px-4 sm:px-6 lg:px-8 mb-28 md:mb-36 transition-all duration-[1000ms] ease-[cubic-bezier(0.22, 1, 0.36, 1)] ${isCtaVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-12 blur-sm'}`}>
         <div className="bg-[#B41615] p-6 sm:p-12 lg:p-[76px] relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/images/633f20cbc6afb0830959c56412676588d369ac16.jpg')] bg-cover bg-center opacity-20 mix-blend-multiply pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[url('https://erp.oxbridgejq.com/assets/uploads/chinapuzzles/images/633f20cbc6afb0830959c56412676588d369ac16.jpg')] bg-cover bg-center opacity-20 mix-blend-multiply pointer-events-none"></div>
 
           <div className="relative max-w-2xl">
             <p className="text-sm font-bold tracking-widest text-white/80 uppercase mb-3">Eligibility</p>
-            {/* ✅ 换成 Bodoni 字体 */}
-            <h2 className={`${bodoni.className} text-[32px] md:text-5xl text-white tracking-tight mb-6 whitespace-normal lg:whitespace-nowrap`}>Ready to meet China where it is.</h2>
+            {/* ✅ 换成 Libre Bodoni 字体 */}
+            <h2 className={`${libreBodoni.className} text-[32px] md:text-5xl text-white tracking-tight mb-6 whitespace-normal lg:whitespace-nowrap`}>Ready to meet China where it is.</h2>
 
             <div className={`transition-all duration-1000 ${isCtaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: isCtaVisible ? '200ms' : '0ms' }}>
               <p className="text-white/80 text-base leading-relaxed mb-10">
-               Global visitors, business professionals and International students are welcome to apply. Custom program for institutions or groups can be made through an inquiry.
+               Global visitors, business professionals and international students are welcome to apply. Custom program for institutions or groups can be made through an inquiry.
               </p>
 
               <Link

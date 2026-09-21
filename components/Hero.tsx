@@ -4,22 +4,33 @@ import { useState, useEffect } from 'react';
 import { Download } from "lucide-react";
 import localFont from 'next/font/local';
 
-// ✅ 用本地 Bodoni-06 字体
-const bodoni = localFont({
+// ✅ 使用你上传的 LibreBodoni 字体包（优先使用 .woff2 格式）
+const libreBodoni = localFont({
   src: [
     {
-      path: '../app/fonts/Bodoni-06-Medium.ttf',   // 相对当前文件的路径
-      weight: '500',
+      path: '../app/fonts/libre-bodoni/LibreBodoni-Regular.woff2',
+      weight: '400',
       style: 'normal',
     },
     {
-      path: '../app/fonts/Bodoni-06-Bold.ttf',
+      path: '../app/fonts/libre-bodoni/LibreBodoni-Medium.woff2',
+      weight: '500', // 页面中 fontWeight: 500 用到的就是它
+      style: 'normal',
+    },
+    {
+      path: '../app/fonts/libre-bodoni/LibreBodoni-Bold.woff2',
       weight: '700',
       style: 'normal',
     },
+    // 如果未来需要斜体，可以取消下面注释
+    // {
+    //   path: '../app/fonts/libre-bodoni/LibreBodoni-MediumItalic.woff2',
+    //   weight: '500',
+    //   style: 'italic',
+    // },
   ],
   display: 'swap',
-  variable: '--font-bodoni',
+  variable: '--font-libre-bodoni',
 });
 
 const Hero = () => {
@@ -98,12 +109,12 @@ const Hero = () => {
         <div className="max-w-[1264px] mx-auto px-6 sm:px-8 w-full">
           <div className="flex flex-col justify-center items-start text-left py-24">
 
-            {/* 主标题：Bodoni，移动端缩小，桌面端 70px / 86px */}
+            {/* 主标题：Libre Bodoni，移动端缩小，桌面端 70px / 86px */}
             <div>
               {titles.map((title, index) => (
                 <div
                   key={index}
-                  className={`${bodoni.className} text-white tracking-wide transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] first:mt-0 ${
+                  className={`${libreBodoni.className} text-white tracking-wide transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] first:mt-0 ${
                     isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-10 blur-md'
                   }`}
                   style={{
@@ -119,9 +130,9 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* 副标题：Bodoni，20px */}
+            {/* 副标题：Libre Bodoni，20px */}
             <p
-              className={`${bodoni.className} mt-8 md:mt-10 text-white tracking-wide transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`${libreBodoni.className} mt-8 md:mt-10 text-white tracking-wide transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-16 blur-lg'
               }`}
               style={{
@@ -131,7 +142,7 @@ const Hero = () => {
                 transitionDelay: isVisible ? '600ms' : '0ms',
               }}
             >
-              See China<br />Piece by piece
+              See China<br />Piece by Piece
             </p>
 
             {/* 按钮组 */}
@@ -142,7 +153,7 @@ const Hero = () => {
               style={{ transitionDelay: isVisible ? '900ms' : '0ms' }}
             >
               <Link
-                href="program/customgroupprogram"
+                href="program/options"
                 className="inline-flex items-center justify-center h-12 bg-white/5 backdrop-blur-sm border border-white/80 text-white font-medium px-8 hover:bg-[#B41615] hover:border-[#B41615] hover:shadow-lg hover:shadow-red-900/30 transition-all duration-300 rounded-sm text-center"
               >
                 Explore Program
@@ -153,7 +164,7 @@ const Hero = () => {
                 download="ChinaPuzzles2026-Brochure.pdf"
                 className="group inline-flex items-center justify-between h-12 gap-6 bg-black/40 border border-white/80 text-white font-medium pl-8 pr-4 w-full sm:w-auto hover:bg-[#B41615] hover:border-[#B41615] hover:shadow-lg hover:shadow-red-900/30 transition-all duration-300 rounded-sm"
               >
-                <span>Download Flyer</span>
+                <span>Program Brochure</span>
                 <div className="w-6 flex items-center justify-center">
                   <Download size={16} />
                 </div>
