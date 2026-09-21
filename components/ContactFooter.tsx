@@ -255,10 +255,10 @@ const ContactFooter = () => {
               <h4 className="text-white text-base font-medium mb-2.5">Explore</h4>
               <ul className="space-y-1.5 text-xs">
                 <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Our Program</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/program/options" className="hover:text-white transition-colors">Our Program</Link></li>
+                <li><Link href="/about/aboutus" className="hover:text-white transition-colors">About Us</Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors">Resources</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/contact/contactus" className="hover:text-white transition-colors">Contact Us</Link></li>
               </ul>
             </div>
 

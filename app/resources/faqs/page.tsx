@@ -25,21 +25,7 @@ type FAQ = {
 const faqs: FAQ[] = [
   {
     q: "Do I need a visa to travel to China?",
-    a: (
-      <>
-        At present, foreigners from 55 countries can enjoy the{" "}
-        <a
-          href="https://chinaexplorertour.com/visa-free-specials/"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="text-[#B41615] underline hover:text-[#8a0f0f] transition-colors"
-        >
-          240-hour visa-free transit policy
-        </a>
-        , covering 60 ports in 24 cities in China, and you can find out whether you need to sign the visa through the government&rsquo;s real-time announcements. The above information is for reference only, the specific policy is subject to the announcement of the Chinese Embassy and Consulates in the local community.
-      </>
-    )
+    a: "Whether you need a visa for China depends on your nationality, trip purpose, and length of stay: citizens of many European countries, plus Australia, New Zealand, South Korea, Japan, Brazil, Argentina, Chile, Peru, Uruguay, and several Gulf states can enter visa-free for up to 30 days for tourism, business, or visiting relatives; those transiting to a third country can stay up to 10 days (240-hour transit scheme) visa-free with a valid passport and onward tickets; everyone else, or anyone staying longer, must apply in advance for the appropriate visa (e.g., an L tourist visa or M business visa) at a Chinese embassy or consulate. Note that your passport should be valid for at least six months, that Hong Kong and Macau have separate immigration rules, and that policies change frequently—always verify your eligibility with official sources before booking."
   },
   { q: "What to see for your first tour to China?", a: "Explore iconic historical landmarks, modern developments and local neighborhoods. The itinerary is carefully curated to provide a balanced experience." },
   { q: "What are the highlights of the Seasonal Featured Trips?", a: "Seasonal trips feature special events, festivals, and weather-appropriate destinations to maximize your experience." },
