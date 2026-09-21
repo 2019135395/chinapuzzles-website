@@ -265,7 +265,7 @@ const ContactFooter = () => {
             <div>
               <h4 className="text-white text-base font-medium mb-2.5">Resources</h4>
               <ul className="space-y-1.5 text-xs">
-                <li><Link href="#" className="hover:text-white transition-colors">Program Brochure</Link></li>
+                <li><a href="/ChinaPuzzles2026-Brochure.pdf" download="ChinaPuzzles2026-Brochure.pdf" className="hover:text-white transition-colors">Program Brochure</a></li>
                 <li><Link href="#" className="hover:text-white transition-colors">Sample Itinerary</Link></li>
                 <li><Link href="/resources/faqs" className="hover:text-white transition-colors">FAQs</Link></li>
               </ul>
