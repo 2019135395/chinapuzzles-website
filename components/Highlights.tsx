@@ -16,7 +16,7 @@ const libreBodoni = localFont({
   variable: '--font-libre-bodoni',
 });
 
-const philosophyText = "China is a global economic powerhouse where ancient heritage meets fast-paced innovation — and no article or headline can substitute for being there. China Puzzles connects you with an authentic, first-hand China experience. blend high-tech industry visits, hands-on business engagement and immersive cultural travel. We help global visitors, business professionals and university students see how ancient traditions intersect with cutting-edge development — on the ground, in real time.";
+const philosophyText = "China is a global economic powerhouse where ancient heritagemeets fast-paced innovation - and no article or headline cansubstitute for being there. China Puzzles connects you with anauthentic, first-hand China experience.";
 
 const advantages = [
   {
@@ -138,7 +138,7 @@ const Highlights = () => {
           </div>
         </div>
 
-        <div ref={whyChooseRef} className="flex flex-col lg:flex-row lg:h-[520px] overflow-hidden">
+        <div ref={whyChooseRef} className="flex flex-col lg:flex-row lg:h-[420px] overflow-hidden">
 
           {/* 左侧图片 */}
           <div className={`relative w-full lg:w-1/2 h-[300px] lg:h-full shrink-0 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isWhyChooseVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-16 blur-md'}`}>
@@ -164,7 +164,7 @@ const Highlights = () => {
                   }`}
                   style={{ transitionDelay: isWhyChooseVisible ? '600ms' : '0ms' }}
                 >
-                  combines high-tech industry visits, hands-on business opportunities, and immersive cultural travel.
+                 Our programs blend high-tech industry visits, hands-on business engagement and immersivecultural travel.
                 </p>
 
                 <p
@@ -173,7 +173,7 @@ const Highlights = () => {
                   }`}
                   style={{ transitionDelay: isWhyChooseVisible ? '900ms' : '0ms' }}
                 >
-                  global visitors, business professionals and university students witness how ancient traditions intersect with cutting-edge development.
+                  We help global visitors, business professionals anduniversity students see how ancient traditions intersect with cutting-edge development - on the ground, in real time.
                 </p>
               </div>
             </div>
