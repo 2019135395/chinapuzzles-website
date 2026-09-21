@@ -164,7 +164,7 @@ const Highlights = () => {
                   }`}
                   style={{ transitionDelay: isWhyChooseVisible ? '600ms' : '0ms' }}
                 >
-                 Our programs blend high-tech industry visits, hands-on business engagement and immersivecultural travel.
+                 Our programs blend high-tech industry visits, hands-on business engagement and immersive cultural travel.
                 </p>
 
                 <p
@@ -173,7 +173,7 @@ const Highlights = () => {
                   }`}
                   style={{ transitionDelay: isWhyChooseVisible ? '900ms' : '0ms' }}
                 >
-                  We help global visitors, business professionals anduniversity students see how ancient traditions intersect with cutting-edge development - on the ground, in real time.
+                  We help global visitors, business professionals and university students see how ancient traditions intersect with cutting-edge development - on the ground, in real time.
                 </p>
               </div>
             </div>
