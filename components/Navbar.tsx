@@ -276,7 +276,7 @@ const Navbar = () => {
               <CalendarDays size={26} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
               <span className="text-[10px] mt-1 font-medium tracking-wide">PROGRAMS</span>
             </Link>
-            <Link href="//ChinaPuzzles2026-Brochure.pdf" className="flex flex-col items-center justify-center py-3 w-full hover:bg-[#8a0f0f] transition-colors border-b border-white/10 group">
+            <Link href="/ChinaPuzzles2026-Brochure.pdf" className="flex flex-col items-center justify-center py-3 w-full hover:bg-[#8a0f0f] transition-colors border-b border-white/10 group">
               <Download size={26} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
               <span className="text-[10px] mt-1 font-medium tracking-wide">DOWNLOAD</span>
             </Link>
